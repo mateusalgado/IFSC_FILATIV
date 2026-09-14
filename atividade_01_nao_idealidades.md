@@ -67,7 +67,7 @@ A saída não passa de mais ou menos `V_CC − 2 V`. Valores típicos do LM741 c
 | Ganho em malha aberta (A_VD) | 200 V/mV (mínimo 20 V/mV) |
 | Corrente de polarização (I_B) | ≈ 80 nA |
 
-Esses são os valores clássicos do 741 (datasheet µA741 da TI até a revisão G, de 2018). A revisão de 2026 do datasheet mudou vários típicos (I_sc = 80 mA, r_i = 540 GΩ, r_o = 575 Ω), provavelmente por causa de uma versão nova do CI. Aqui foram usados os valores clássicos, que são os que costumam aparecer nos livros.
+Esses são os valores clássicos do 741 (datasheet µA741 da TI até a revisão G, de 2018). A revisão de 2026 do datasheet mudou vários típicos (I_sc = 80 mA, r_i = 540 GΩ, r_o = 575 Ω), provavelmente por causa de uma versão nova do CI. Aqui foram usados os valores clássicos.
 
 ### Limite de corrente
 
@@ -93,7 +93,6 @@ O ganho só depende da razão R_f/R_in, mas o valor absoluto dos resistores defi
 | U2 | **5 Ω** | **200 mA** |
 | U3 | 10 kΩ | 0,1 mA |
 
-Em U2 a fonte teria que entregar 200 mA. No Proteus a fonte V1 é ideal e consegue, mas um gerador de funções real tem 50 Ω de impedância de saída. Com uma carga de 5 Ω, sobraria na entrada só $5/(50+5) \approx 9\%$ do sinal (1 V viraria uns 0,09 V). Ou seja, U2 já não funcionaria na prática antes mesmo de chegar no ampop.
 
 **Carga vista pela saída do ampop.** A saída alimenta a carga R_L e também o R_f, que vai até o terra virtual. Os dois ficam em paralelo, então a carga total é $R_f \parallel R_L$, e a fórmula do limite de corrente fica simplesmente $V_{out,max} = I_{sc} \cdot (R_f \parallel R_L)$:
 
@@ -103,18 +102,22 @@ Em U2 a fonte teria que entregar 200 mA. No Proteus a fonte V1 é ideal e conseg
 | U2 | 50 ∥ 1k = 47,6 Ω | 1,19 V | limita por corrente |
 | U3 | 100k ∥ 300 = 299 Ω | 7,48 V | limita por corrente |
 
-O datasheet especifica a excursão de saída para R_L ≥ 2 kΩ. O gráfico de tensão máxima × carga do datasheet mostra que abaixo de 1 kΩ a excursão cai rápido: com 300 Ω fica em torno de ±7 a 8 V, o mesmo valor calculado para U3. A carga de U2 (47,6 Ω) é menor até que a própria resistência de saída do 741 em malha aberta (r_o ≈ 75 Ω).
+O datasheet especifica a excursão de saída para R_L ≥ 2 kΩ. A Figura 2, tirada do datasheet, mostra como a tensão máxima de saída cai quando a carga diminui:
 
-**Resistência de saída com realimentação.** Enquanto o ampop está na região linear, a realimentação reduz a resistência de saída:
+- com 1 kΩ (carga de U1), o 741 chega a uns ±12 V;
+- com 300 Ω (carga de U3), chega só a uns ±8 V. Isso corresponde a uns 27 mA, perto dos 25 mA de I_sc usados na conta de U3 (7,48 V).
 
-$$r_{out} = \frac{r_o}{1 + A\beta} \qquad \beta = \frac{R_{in}}{R_{in} + R_f} = \frac{1}{11}$$
+A carga de U2 (47,6 Ω) nem aparece no gráfico, que começa em 100 Ω. Ela é menor até que a própria resistência de saída do 741 (r_o ≈ 75 Ω).
 
-Em 1 kHz o ganho do 741 em malha aberta é de uns $1\ \text{MHz} / 1\ \text{kHz} = 1000$, então $A\beta \approx 91$ e $r_{out} \approx 75/92 \approx 0{,}8\ \Omega$. Por isso, na região linear, a saída se comporta como uma fonte de tensão quase ideal e o r_o não atrapalha. O problema começa quando o ampop bate no limite de corrente. A partir daí ele não consegue mais corrigir a saída, a realimentação para de funcionar e a saída deixa de ser uma fonte de baixa impedância. É isso que acontece em U2 (ver 1.5).
+![Figura 2](imgs/datasheet/ua741_vom_x_rl.png)
+
+*Figura 2 – Tensão máxima de saída × resistência de carga do µA741 com ±15 V (recorte da Figura 5-4 do datasheet da Texas Instruments, SLOS094).*
+
+Isso só vale enquanto o ampop consegue entregar a corrente pedida. Quando ele chega no limite de corrente, para de corrigir a saída, e ela passa a depender do resto do circuito. 
 
 **Por que também não usar resistores muito grandes.** O limite de cima vem da entrada do ampop:
 
 - Os resistores precisam ser bem menores que r_i ≈ 2 MΩ. Senão, parte da corrente vai para dentro do ampop e o ganho erra.
-- A corrente de polarização passa pelo R_f e gera um erro de offset $I_B \times R_f$. Com 100 kΩ isso dá 8 mV, que é pouco. Com 10 MΩ daria 0,8 V.
 
 Por isso a faixa usual fica mais ou menos entre 1 kΩ e 100 kΩ:
 
@@ -148,23 +151,23 @@ Para U2 e U3 o nível de saída deveria ser o mesmo em 1 V e em 3 V, porque o li
 
 ## 1.3 Simulação (Proteus, LM741)
 
-A Parte 1 foi feita na teoria e na simulação. No osciloscópio do Proteus o canal A (amarelo, 2,07 V/div) é a saída de U1, o B (azul, 0,5 V/div) é U2 e o C (rosa, 1,2 V/div) é U3. A base de tempo é 0,1 ms/div. Os valores foram lidos na tela e conferidos com os cursores das Figuras 4 e 5.
+A Parte 1 foi feita na teoria e na simulação. No osciloscópio do Proteus o canal A (amarelo, 2,07 V/div) é a saída de U1, o B (azul, 0,5 V/div) é U2 e o C (rosa, 1,2 V/div) é U3. A base de tempo é 0,1 ms/div. Os valores foram lidos na tela e conferidos com os cursores das Figuras 5 e 6.
 
-![Figura 2](imgs/simulacao/U1_U2_U3_VP1V.png)
+![Figura 3](imgs/simulacao/U1_U2_U3_VP1V.png)
 
-*Figura 2 – Simulação com Vp = 1 V. U1 = 10 V de pico, U3 = 9,54 V e U2 sobe até ≈ 1,5 V e depois cai para ≈ 0,75 V no pico da entrada.*
+*Figura 3 – Simulação com Vp = 1 V. U1 = 10 V de pico, U3 = 9,54 V e U2 sobe até ≈ 1,5 V e depois cai para ≈ 0,75 V no pico da entrada.*
 
-![Figura 3](imgs/simulacao/U1_U2_U3_VP3V.png)
+![Figura 4](imgs/simulacao/U1_U2_U3_VP3V.png)
 
-*Figura 3 – Simulação com Vp = 3 V. U1 ceifa em +13,9/−13,6 V, U3 ceifa em ±9,78 V e U2 fica com ≈ 1,1 V de pico, em fase com a entrada.*
+*Figura 4 – Simulação com Vp = 3 V. U1 ceifa em +13,9/−13,6 V, U3 ceifa em ±9,78 V e U2 fica com ≈ 1,1 V de pico, em fase com a entrada.*
 
-![Figura 4](imgs/simulacao/vp1.png)
+![Figura 5](imgs/simulacao/vp1.png)
 
-*Figura 4 – Vp = 1 V, zoom no pico com cursores: U1 = 9,93 V, U3 = 9,54 V e U2 = 0,75 V.*
+*Figura 5 – Vp = 1 V, zoom no pico com cursores: U1 = 9,93 V, U3 = 9,54 V e U2 = 0,75 V.*
 
-![Figura 5](imgs/simulacao/VP_U1.png)
+![Figura 6](imgs/simulacao/VP_U1.png)
 
-*Figura 5 – Vp = 1 V, outra posição de cursor: U1 = 9,93 V e U3 = 9,51 V no pico; U2 = 1,50 V no "ombro" da onda.*
+*Figura 6 – Vp = 1 V, outra posição de cursor: U1 = 9,93 V e U3 = 9,51 V no pico; U2 = 1,50 V no "ombro" da onda.*
 
 ## 1.4 Resultados
 
@@ -183,7 +186,7 @@ A Parte 1 foi feita na teoria e na simulação. No osciloscópio do Proteus o ca
 
 **U3** chegou a 9,54 V com 1 V de pico (o ideal era 10 V) e a 9,78 V com 3 V, com o topo plano. U1 e U3 têm a mesma alimentação e a mesma realimentação; a única diferença é a carga (1 kΩ e 300 Ω). Se U3 ceifa em 9,78 V enquanto U1 vai até 13,8 V, a diferença só pode vir da corrente puxada pela carga. Então é limite de corrente e não de tensão. O nível quase não mudou entre 1 V e 3 V, como a teoria previa.
 
-Com 1 V de pico isso já aparece de leve: nos cursores da Figura 4, no mesmo instante, U1 marca 9,93 V e U3 marca 9,54 V, mesmo com o mesmo ganho. Na Figura 2 o pico de U3 fica mais achatado que uma senoide normal, enquanto o de U1 fica redondo.
+Com 1 V de pico isso já aparece de leve: nos cursores da Figura 5, no mesmo instante, U1 marca 9,93 V e U3 marca 9,54 V, mesmo com o mesmo ganho. Na Figura 3 o pico de U3 fica mais achatado que uma senoide normal, enquanto o de U1 fica redondo.
 
 O valor simulado ficou maior que os 7,48 V calculados. Isso acontece porque o modelo do 741 no Proteus aguenta mais corrente que os 25 mA usados na conta. Dá para calcular esse limite com os próprios resultados:
 
@@ -198,6 +201,8 @@ Usando I_sc ≈ 32 mA, a fórmula dá:
 $$V_{out,max,U2} = \frac{32m}{1/1k + 1/50} \approx 1{,}52\ \text{V} \qquad V_{out,max,U3} = \frac{32m}{1/300 + 1/100k} \approx 9{,}57\ \text{V}$$
 
 Isso bate com a simulação. Então a teoria estava certa, só o valor de I_sc era diferente.
+
+O gráfico do datasheet (Figura 2) aponta na mesma direção. Um 741 típico chegaria a uns ±12 V com a carga de U1 e a uns ±8 V com a de U3, e o modelo do Proteus chegou a ±13,9 V e ±9,8 V. Ou seja, o modelo do simulador é um pouco mais "forte" que o CI típico do datasheet, mas os dois mostram o mesmo comportamento: quanto menor a carga, menor a tensão que a saída consegue alcançar.
 
 **U2** teve um comportamento que não estava previsto. A saída sobe até ≈ 1,5 V e depois cai para 0,75 V justamente quando a entrada está no máximo. Com 3 V a saída fica em fase com a entrada, sendo que o circuito é inversor.
 
@@ -223,9 +228,9 @@ O valor dos resistores importa, e não só a razão entre eles. Resistores muito
 
 ## 2.1 Circuito
 
-![Figura 6](imgs/enunciado/figura2_slew_rate.png)
+![Figura 7](imgs/enunciado/figura2_slew_rate.png)
 
-*Figura 6 – Circuito da Parte 2.*
+*Figura 7 – Circuito da Parte 2.*
 
 São dois seguidores de tensão (ganho 1) ligados na mesma entrada, alimentados com ±12 V:
 
@@ -304,75 +309,75 @@ O SR foi medido entre 10 % e 90 % da subida e da descida, contando os pixels na 
 
 | f | Amplitude (escala) | Base de tempo | Saída do TL082 | SR 10–90 % (subida / descida) | Figura |
 |:---:|:---:|:---:|---|:---:|:---:|
-| 1 kHz | 0 → 3 V (0,2 V/div) | 77,9 µs/div | igual à entrada (a rampa de 0,3 µs não aparece nessa escala) | – | 7 |
-| 50 kHz | 0 → 3 V (0,2 V/div) | 0,78 µs/div | rampa de ≈ 0,25 µs com um pequeno overshoot | 12,3 / 12,3 V/µs | 8 |
-| 100 kHz | 0 → 5 V (0,5 V/div) | 0,62 µs/div | trapézio, ≈ 0,47 µs da base ao topo | 12,8 / 14,2 V/µs | 9 |
-| 200 kHz | 0 → 5 V (0,5 V/div) | 0,62 µs/div | trapézio | 11,6 / 12,8 V/µs | 10 |
-| 500 kHz | 0 → 5 V (0,5 V/div) | 0,5 µs/div | trapézio com topo de só ≈ 0,5 µs | 12,3 / 13,3 V/µs | 11 |
-| 1 MHz | 0 → 5 V (0,5 V/div) | 0,5 µs/div | triângulo que mal chega em 5 V | 13,3 / 13,3 V/µs | 12 |
+| 1 kHz | 0 → 3 V (0,2 V/div) | 77,9 µs/div | igual à entrada (a rampa de 0,3 µs não aparece nessa escala) | – | 8 |
+| 50 kHz | 0 → 3 V (0,2 V/div) | 0,78 µs/div | rampa de ≈ 0,25 µs com um pequeno overshoot | 12,3 / 12,3 V/µs | 9 |
+| 100 kHz | 0 → 5 V (0,5 V/div) | 0,62 µs/div | trapézio, ≈ 0,47 µs da base ao topo | 12,8 / 14,2 V/µs | 10 |
+| 200 kHz | 0 → 5 V (0,5 V/div) | 0,62 µs/div | trapézio | 11,6 / 12,8 V/µs | 11 |
+| 500 kHz | 0 → 5 V (0,5 V/div) | 0,5 µs/div | trapézio com topo de só ≈ 0,5 µs | 12,3 / 13,3 V/µs | 12 |
+| 1 MHz | 0 → 5 V (0,5 V/div) | 0,5 µs/div | triângulo que mal chega em 5 V | 13,3 / 13,3 V/µs | 13 |
 | **Média** | | | | **12,8 V/µs** | |
 
 **Senoide de 3 V de pico (6 Vpp, 0,5 V/div):**
 
 | f | Inclinação máxima exigida ($2\pi f V_p$) | Saída do TL082 | Figura |
 |:---:|:---:|---|:---:|
-| 10 kHz | 0,19 V/µs | igual à entrada | 13 |
-| 100 kHz | 1,9 V/µs | igual à entrada | 14 |
-| 200 kHz | 3,8 V/µs | igual à entrada | 15 |
-| 500 kHz | 9,4 V/µs | igual, com um atraso bem pequeno | 16 |
-| 1 MHz | 18,8 V/µs | atrasada, com os lados mais retos e ≈ 5,5 Vpp (−8 %) | 17 |
+| 10 kHz | 0,19 V/µs | igual à entrada | 14 |
+| 100 kHz | 1,9 V/µs | igual à entrada | 15 |
+| 200 kHz | 3,8 V/µs | igual à entrada | 16 |
+| 500 kHz | 9,4 V/µs | igual, com um atraso bem pequeno | 17 |
+| 1 MHz | 18,8 V/µs | atrasada, com os lados mais retos e ≈ 5,5 Vpp (−8 %) | 18 |
 
-![Figura 7](imgs/simulacao/sr_pulso_TL082_741_1khz.png)
+![Figura 8](imgs/simulacao/sr_pulso_TL082_741_1khz.png)
 
-*Figura 7 – Simulação, pulso de 1 kHz. Entrada (amarelo) e TL082 (rosa) coincidem nessa escala.*
+*Figura 8 – Simulação, pulso de 1 kHz. Entrada (amarelo) e TL082 (rosa) coincidem nessa escala.*
 
-![Figura 8](imgs/simulacao/sr_pulso_TL082_741_50khz.png)
+![Figura 9](imgs/simulacao/sr_pulso_TL082_741_50khz.png)
 
-*Figura 8 – Simulação, pulso de 50 kHz (0,78 µs/div). Rampa do TL082 de ≈ 12 V/µs.*
+*Figura 9 – Simulação, pulso de 50 kHz (0,78 µs/div). Rampa do TL082 de ≈ 12 V/µs.*
 
-![Figura 9](imgs/simulacao/sr_pulso_TL082_741_100khz.png)
+![Figura 10](imgs/simulacao/sr_pulso_TL082_741_100khz.png)
 
-*Figura 9 – Simulação, pulso de 5 V em 100 kHz. Bordas do TL082 com ≈ 0,47 µs.*
+*Figura 10 – Simulação, pulso de 5 V em 100 kHz. Bordas do TL082 com ≈ 0,47 µs.*
 
-![Figura 10](imgs/simulacao/sr_pulso_TL082_741_200khz.png)
+![Figura 11](imgs/simulacao/sr_pulso_TL082_741_200khz.png)
 
-*Figura 10 – Simulação, pulso de 5 V em 200 kHz.*
+*Figura 11 – Simulação, pulso de 5 V em 200 kHz.*
 
-![Figura 11](imgs/simulacao/sr_pulso_TL082_741_500khz.png)
+![Figura 12](imgs/simulacao/sr_pulso_TL082_741_500khz.png)
 
-*Figura 11 – Simulação, pulso de 5 V em 500 kHz. O topo fica mais curto.*
+*Figura 12 – Simulação, pulso de 5 V em 500 kHz. O topo fica mais curto.*
 
-![Figura 12](imgs/simulacao/sr_pulso_TL082_741_1Mhz.png)
+![Figura 13](imgs/simulacao/sr_pulso_TL082_741_1Mhz.png)
 
-*Figura 12 – Simulação, pulso de 5 V em 1 MHz. A saída do TL082 vira triângulo.*
+*Figura 13 – Simulação, pulso de 5 V em 1 MHz. A saída do TL082 vira triângulo.*
 
-![Figura 13](imgs/simulacao/sr_senoide_3vp_10khz.png)
+![Figura 14](imgs/simulacao/sr_senoide_3vp_10khz.png)
 
-*Figura 13 – Simulação, senoide de 3 Vp em 10 kHz.*
+*Figura 14 – Simulação, senoide de 3 Vp em 10 kHz.*
 
-![Figura 14](imgs/simulacao/sr_senoide_3vp_100khz.png)
+![Figura 15](imgs/simulacao/sr_senoide_3vp_100khz.png)
 
-*Figura 14 – Simulação, senoide de 3 Vp em 100 kHz.*
+*Figura 15 – Simulação, senoide de 3 Vp em 100 kHz.*
 
-![Figura 15](imgs/simulacao/sr_senoide_3vp_200khz.png)
+![Figura 16](imgs/simulacao/sr_senoide_3vp_200khz.png)
 
-*Figura 15 – Simulação, senoide de 3 Vp em 200 kHz.*
+*Figura 16 – Simulação, senoide de 3 Vp em 200 kHz.*
 
-![Figura 16](imgs/simulacao/sr_senoide_3vp_500khz.png)
+![Figura 17](imgs/simulacao/sr_senoide_3vp_500khz.png)
 
-*Figura 16 – Simulação, senoide de 3 Vp em 500 kHz. O TL082 ainda acompanha a entrada.*
+*Figura 17 – Simulação, senoide de 3 Vp em 500 kHz. O TL082 ainda acompanha a entrada.*
 
-![Figura 17](imgs/simulacao/sr_senoide_3vp_1Mhz.png)
+![Figura 18](imgs/simulacao/sr_senoide_3vp_1Mhz.png)
 
-*Figura 17 – Simulação, senoide de 3 Vp em 1 MHz. Saída atrasada e menor por causa do slew rate.*
+*Figura 18 – Simulação, senoide de 3 Vp em 1 MHz. Saída atrasada e menor por causa do slew rate.*
 
 ## 2.4 Bancada
 
 Os testes foram feitos em 31/08/2026, com os dois seguidores montados em protoboard. Equipamentos: osciloscópio Tektronix TDS 2024C, gerador de funções Tektronix e fonte simétrica (o display mostrava 11,9 V e 11,6 V).
 
-![Figura 18](imgs/protoboard/parte2_bancada.jpeg)
+![Figura 19](imgs/protoboard/parte2_bancada.jpeg)
 
-*Figura 18 – Montagem da Parte 2 na bancada.*
+*Figura 19 – Montagem da Parte 2 na bancada.*
 
 Canais usados em todas as fotos:
 
@@ -388,14 +393,14 @@ O SR foi calculado como ΔV/Δt entre os dois cursores, colocados na parte reta 
 
 | f | Canal | Δt (µs) | ΔV (V) | ΔV/Δt (V/µs) | Figura |
 |:---:|---|:---:|:---:|:---:|:---:|
-| 1 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 20 |
-| 1 kHz | CH2 – TL082 | 6,30 | 2,62 | 0,416 | 21 |
-| 10 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 23 |
-| 10 kHz | CH2 – TL082 | 6,30 | 2,59 | 0,411 | 24 |
-| 25 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 26 |
-| 25 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 27 |
-| 30 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 28 |
-| 30 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 29 |
+| 1 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 21 |
+| 1 kHz | CH2 – TL082 | 6,30 | 2,62 | 0,416 | 22 |
+| 10 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 24 |
+| 10 kHz | CH2 – TL082 | 6,30 | 2,59 | 0,411 | 25 |
+| 25 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 27 |
+| 25 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 28 |
+| 30 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 29 |
+| 30 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 30 |
 | **Média** | **CH1 – 741** | | | **0,342** | |
 | **Média** | **CH2 – TL082** | | | **0,409**¹ | |
 
@@ -403,123 +408,123 @@ O SR foi calculado como ΔV/Δt entre os dois cursores, colocados na parte reta 
 
 Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53 V no CH2 (duty de 50 %), confirmando o ganho 1 dos dois seguidores. Em 25 kHz o topo do 741 fica com uns 5 µs e em 30 kHz com uns 2 µs.
 
-![Figura 19](imgs/protoboard/5V/p2_5V_1kHz_visao_geral.jpeg)
+![Figura 20](imgs/protoboard/5V/p2_5V_1kHz_visao_geral.jpeg)
 
-*Figura 19 – Pulso de 5 V, 1 kHz, visão geral (250 µs/div). CH1 = 5,02 Vpp e CH2 = 5,06 Vpp.*
+*Figura 20 – Pulso de 5 V, 1 kHz, visão geral (250 µs/div). CH1 = 5,02 Vpp e CH2 = 5,06 Vpp.*
 
-![Figura 20](imgs/protoboard/5V/p2_5V_1kHz_ch1_741.jpeg)
+![Figura 21](imgs/protoboard/5V/p2_5V_1kHz_ch1_741.jpeg)
 
-*Figura 20 – Pulso de 5 V, 1 kHz, subida (2,5 µs/div). Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
+*Figura 21 – Pulso de 5 V, 1 kHz, subida (2,5 µs/div). Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
 
-![Figura 21](imgs/protoboard/5V/p2_5V_1kHz_ch2_tl082.jpeg)
+![Figura 22](imgs/protoboard/5V/p2_5V_1kHz_ch2_tl082.jpeg)
 
-*Figura 21 – Pulso de 5 V, 1 kHz. Cursores no CH2 (TL082): 2,62 V / 6,3 µs = 0,416 V/µs.*
+*Figura 22 – Pulso de 5 V, 1 kHz. Cursores no CH2 (TL082): 2,62 V / 6,3 µs = 0,416 V/µs.*
 
-![Figura 22](imgs/protoboard/5V/p2_5V_10kHz_visao_geral.jpeg)
+![Figura 23](imgs/protoboard/5V/p2_5V_10kHz_visao_geral.jpeg)
 
-*Figura 22 – Pulso de 5 V, 10 kHz, visão geral (10 µs/div).*
+*Figura 23 – Pulso de 5 V, 10 kHz, visão geral (10 µs/div).*
 
-![Figura 23](imgs/protoboard/5V/p2_5V_10kHz_ch1_741.jpeg)
+![Figura 24](imgs/protoboard/5V/p2_5V_10kHz_ch1_741.jpeg)
 
-*Figura 23 – Pulso de 5 V, 10 kHz. Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
+*Figura 24 – Pulso de 5 V, 10 kHz. Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
 
-![Figura 24](imgs/protoboard/5V/p2_5V_10kHz_ch2_tl082.jpeg)
+![Figura 25](imgs/protoboard/5V/p2_5V_10kHz_ch2_tl082.jpeg)
 
-*Figura 24 – Pulso de 5 V, 10 kHz. Cursores no CH2 (TL082): 2,59 V / 6,3 µs = 0,411 V/µs.*
+*Figura 25 – Pulso de 5 V, 10 kHz. Cursores no CH2 (TL082): 2,59 V / 6,3 µs = 0,411 V/µs.*
 
-![Figura 25](imgs/protoboard/5V/p2_5V_25kHz_visao_geral.jpeg)
+![Figura 26](imgs/protoboard/5V/p2_5V_25kHz_visao_geral.jpeg)
 
-*Figura 25 – Pulso de 5 V, 25 kHz, visão geral (5 µs/div). O topo do 741 (amarelo) já é mais curto que o do TL082.*
+*Figura 26 – Pulso de 5 V, 25 kHz, visão geral (5 µs/div). O topo do 741 (amarelo) já é mais curto que o do TL082.*
 
-![Figura 26](imgs/protoboard/5V/p2_5V_25kHz_ch1_741.jpeg)
+![Figura 27](imgs/protoboard/5V/p2_5V_25kHz_ch1_741.jpeg)
 
-*Figura 26 – Pulso de 5 V, 25 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs.*
+*Figura 27 – Pulso de 5 V, 25 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs.*
 
-![Figura 27](imgs/protoboard/5V/p2_5V_25kHz_ch2_tl082.jpeg)
+![Figura 28](imgs/protoboard/5V/p2_5V_25kHz_ch2_tl082.jpeg)
 
-*Figura 27 – Pulso de 5 V, 25 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
+*Figura 28 – Pulso de 5 V, 25 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
 
-![Figura 28](imgs/protoboard/5V/p2_5V_30kHz_ch1_741.jpeg)
+![Figura 29](imgs/protoboard/5V/p2_5V_30kHz_ch1_741.jpeg)
 
-*Figura 28 – Pulso de 5 V, 30 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs. O topo do 741 dura só uns 2 µs.*
+*Figura 29 – Pulso de 5 V, 30 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs. O topo do 741 dura só uns 2 µs.*
 
-![Figura 29](imgs/protoboard/5V/p2_5V_30kHz_ch2_tl082.jpeg)
+![Figura 30](imgs/protoboard/5V/p2_5V_30kHz_ch2_tl082.jpeg)
 
-*Figura 29 – Pulso de 5 V, 30 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
+*Figura 30 – Pulso de 5 V, 30 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
 
 ### Pulso de 0 a 3 V
 
 | f | Canal | Δt (µs) | ΔV (V) | ΔV/Δt (V/µs) | Figura |
 |:---:|---|:---:|:---:|:---:|:---:|
-| 1 kHz | CH1 – 741 | 48,0 | 1,06 | 0,022² | 31 |
-| 1 kHz | CH2 – TL082 | 48,0 | 1,92 | 0,040² | 32 |
-| 10 kHz | CH1 – 741 | 5,20 | 1,78 | 0,342 | 34 |
-| 10 kHz | CH2 – TL082 | 5,20 | 2,16 | 0,415 | 35 |
-| 25 kHz | CH1 – 741 | 4,96 | 1,58 | 0,319 | 37 |
-| 25 kHz | CH2 – TL082 | 4,56 | 1,80 | 0,395 | 38 |
-| 30 kHz | CH1 – 741 | 6,00 | 2,04 | 0,340 | 39 |
-| 30 kHz | CH2 – TL082 | 4,20 | 1,70 | 0,405 | 40 |
-| 50 kHz | CH1 – 741 | 4,20 | 1,49 | 0,355 | 41 |
-| 50 kHz | CH2 – TL082 | 4,20 | 1,75 | 0,417 | 42 |
+| 1 kHz | CH1 – 741 | 48,0 | 1,06 | 0,022² | 32 |
+| 1 kHz | CH2 – TL082 | 48,0 | 1,92 | 0,040² | 33 |
+| 10 kHz | CH1 – 741 | 5,20 | 1,78 | 0,342 | 35 |
+| 10 kHz | CH2 – TL082 | 5,20 | 2,16 | 0,415 | 36 |
+| 25 kHz | CH1 – 741 | 4,96 | 1,58 | 0,319 | 38 |
+| 25 kHz | CH2 – TL082 | 4,56 | 1,80 | 0,395 | 39 |
+| 30 kHz | CH1 – 741 | 6,00 | 2,04 | 0,340 | 40 |
+| 30 kHz | CH2 – TL082 | 4,20 | 1,70 | 0,405 | 41 |
+| 50 kHz | CH1 – 741 | 4,20 | 1,49 | 0,355 | 42 |
+| 50 kHz | CH2 – TL082 | 4,20 | 1,75 | 0,417 | 43 |
 | **Média (10 a 50 kHz)** | **CH1 – 741** | | | **0,339** | |
 | **Média (10 a 50 kHz)** | **CH2 – TL082** | | | **0,408**¹ | |
 
 ¹ No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
-² Em 1 kHz as duas saídas ficaram iguais, com bordas arredondadas de uns 90 µs (Figuras 30 a 32). Quem limitou ali foi a borda do próprio sinal de entrada, e não os ampops: o 741 subiria 3 V em uns 9 µs. Por isso essas duas medidas ficaram fora da média.
+² Em 1 kHz as duas saídas ficaram iguais, com bordas arredondadas de uns 90 µs (Figuras 31 a 33). Quem limitou ali foi a borda do próprio sinal de entrada, e não os ampops: o 741 subiria 3 V em uns 9 µs. Por isso essas duas medidas ficaram fora da média.
 
 Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V). Em 25 kHz mediu 3,30 Vpp no CH1 e 3,34 Vpp no CH2 (contando os picos das transições), com média do CH2 = 1,28 V. Em 50 kHz a saída do 741 já é quase triangular.
 
-![Figura 30](imgs/protoboard/3V/p2_3V_1kHz_visao_geral.jpeg)
+![Figura 31](imgs/protoboard/3V/p2_3V_1kHz_visao_geral.jpeg)
 
-*Figura 30 – Pulso de 3 V, 1 kHz, visão geral (250 µs/div). CH1 = CH2 = 3,02 Vpp, com bordas arredondadas iguais nos dois canais.*
+*Figura 31 – Pulso de 3 V, 1 kHz, visão geral (250 µs/div). CH1 = CH2 = 3,02 Vpp, com bordas arredondadas iguais nos dois canais.*
 
-![Figura 31](imgs/protoboard/3V/p2_3V_1kHz_ch1_741.jpeg)
+![Figura 32](imgs/protoboard/3V/p2_3V_1kHz_ch1_741.jpeg)
 
-*Figura 31 – Pulso de 3 V, 1 kHz (100 µs/div). Cursores no CH1 (741): 1,06 V / 48 µs. A transição é lenta nos dois canais.*
+*Figura 32 – Pulso de 3 V, 1 kHz (100 µs/div). Cursores no CH1 (741): 1,06 V / 48 µs. A transição é lenta nos dois canais.*
 
-![Figura 32](imgs/protoboard/3V/p2_3V_1kHz_ch2_tl082.jpeg)
+![Figura 33](imgs/protoboard/3V/p2_3V_1kHz_ch2_tl082.jpeg)
 
-*Figura 32 – Pulso de 3 V, 1 kHz. Cursores no CH2 (TL082): 1,92 V / 48 µs.*
+*Figura 33 – Pulso de 3 V, 1 kHz. Cursores no CH2 (TL082): 1,92 V / 48 µs.*
 
-![Figura 33](imgs/protoboard/3V/p2_3V_10kHz_visao_geral.jpeg)
+![Figura 34](imgs/protoboard/3V/p2_3V_10kHz_visao_geral.jpeg)
 
-*Figura 33 – Pulso de 3 V, 10 kHz, visão geral (25 µs/div).*
+*Figura 34 – Pulso de 3 V, 10 kHz, visão geral (25 µs/div).*
 
-![Figura 34](imgs/protoboard/3V/p2_3V_10kHz_ch1_741.jpeg)
+![Figura 35](imgs/protoboard/3V/p2_3V_10kHz_ch1_741.jpeg)
 
-*Figura 34 – Pulso de 3 V, 10 kHz (2,5 µs/div). Cursores no CH1 (741): 1,78 V / 5,2 µs = 0,342 V/µs.*
+*Figura 35 – Pulso de 3 V, 10 kHz (2,5 µs/div). Cursores no CH1 (741): 1,78 V / 5,2 µs = 0,342 V/µs.*
 
-![Figura 35](imgs/protoboard/3V/p2_3V_10kHz_ch2_tl082.jpeg)
+![Figura 36](imgs/protoboard/3V/p2_3V_10kHz_ch2_tl082.jpeg)
 
-*Figura 35 – Pulso de 3 V, 10 kHz. Cursores no CH2 (TL082): 2,16 V / 5,2 µs = 0,415 V/µs.*
+*Figura 36 – Pulso de 3 V, 10 kHz. Cursores no CH2 (TL082): 2,16 V / 5,2 µs = 0,415 V/µs.*
 
-![Figura 36](imgs/protoboard/3V/p2_3V_25kHz_visao_geral.jpeg)
+![Figura 37](imgs/protoboard/3V/p2_3V_25kHz_visao_geral.jpeg)
 
-*Figura 36 – Pulso de 3 V, 25 kHz, visão geral (10 µs/div). CH1 = 3,30 Vpp e CH2 = 3,34 Vpp.*
+*Figura 37 – Pulso de 3 V, 25 kHz, visão geral (10 µs/div). CH1 = 3,30 Vpp e CH2 = 3,34 Vpp.*
 
-![Figura 37](imgs/protoboard/3V/p2_3V_25kHz_ch1_741.jpeg)
+![Figura 38](imgs/protoboard/3V/p2_3V_25kHz_ch1_741.jpeg)
 
-*Figura 37 – Pulso de 3 V, 25 kHz (1 µs/div). Cursores no CH1 (741): 1,58 V / 4,96 µs = 0,319 V/µs.*
+*Figura 38 – Pulso de 3 V, 25 kHz (1 µs/div). Cursores no CH1 (741): 1,58 V / 4,96 µs = 0,319 V/µs.*
 
-![Figura 38](imgs/protoboard/3V/p2_3V_25kHz_ch2_tl082.jpeg)
+![Figura 39](imgs/protoboard/3V/p2_3V_25kHz_ch2_tl082.jpeg)
 
-*Figura 38 – Pulso de 3 V, 25 kHz. Cursores no CH2 (TL082): 1,80 V / 4,56 µs = 0,395 V/µs.*
+*Figura 39 – Pulso de 3 V, 25 kHz. Cursores no CH2 (TL082): 1,80 V / 4,56 µs = 0,395 V/µs.*
 
-![Figura 39](imgs/protoboard/3V/p2_3V_30kHz_ch1_741.jpeg)
+![Figura 40](imgs/protoboard/3V/p2_3V_30kHz_ch1_741.jpeg)
 
-*Figura 39 – Pulso de 3 V, 30 kHz (5 µs/div). Cursores no CH1 (741): 2,04 V / 6,0 µs = 0,340 V/µs.*
+*Figura 40 – Pulso de 3 V, 30 kHz (5 µs/div). Cursores no CH1 (741): 2,04 V / 6,0 µs = 0,340 V/µs.*
 
-![Figura 40](imgs/protoboard/3V/p2_3V_30kHz_ch2_tl082.jpeg)
+![Figura 41](imgs/protoboard/3V/p2_3V_30kHz_ch2_tl082.jpeg)
 
-*Figura 40 – Pulso de 3 V, 30 kHz. Cursores no CH2 (TL082): 1,70 V / 4,2 µs = 0,405 V/µs.*
+*Figura 41 – Pulso de 3 V, 30 kHz. Cursores no CH2 (TL082): 1,70 V / 4,2 µs = 0,405 V/µs.*
 
-![Figura 41](imgs/protoboard/3V/p2_3V_50kHz_ch1_741.jpeg)
+![Figura 42](imgs/protoboard/3V/p2_3V_50kHz_ch1_741.jpeg)
 
-*Figura 41 – Pulso de 3 V, 50 kHz (5 µs/div). Cursores no CH1 (741): 1,49 V / 4,2 µs = 0,355 V/µs. A onda já é quase triangular.*
+*Figura 42 – Pulso de 3 V, 50 kHz (5 µs/div). Cursores no CH1 (741): 1,49 V / 4,2 µs = 0,355 V/µs. A onda já é quase triangular.*
 
-![Figura 42](imgs/protoboard/3V/p2_3V_50kHz_ch2_tl082.jpeg)
+![Figura 43](imgs/protoboard/3V/p2_3V_50kHz_ch2_tl082.jpeg)
 
-*Figura 42 – Pulso de 3 V, 50 kHz. Cursores no CH2 (TL082): 1,75 V / 4,2 µs = 0,417 V/µs.*
+*Figura 43 – Pulso de 3 V, 50 kHz. Cursores no CH2 (TL082): 1,75 V / 4,2 µs = 0,417 V/µs.*
 
 ### Senoide de 3 Vpp (0 a 3 V, 1,5 V de pico)
 
@@ -527,36 +532,36 @@ Nesse teste o CH3 (roxo) mostra a entrada. A amplitude de 3 Vpp foi lida na tela
 
 | f | Inclinação máxima exigida ($2\pi f V_p$) | LM741 (CH1) | TL082 (CH2) | Figura |
 |:---:|:---:|---|---|:---:|
-| 25 kHz | 0,24 V/µs | senoide sem distorção, em cima da entrada | sem distorção | 43 |
-| 50 kHz | 0,47 V/µs | lados retos (começa a triangular); cursores: 2,20 V / 6,4 µs = **0,344 V/µs** | igual à entrada | 44 |
-| 100 kHz | 0,94 V/µs | triângulo de ≈ 1,7 Vpp; cursores: 1,28 V / 3,7 µs = **0,346 V/µs** | igual à entrada | 45 |
-| 500 kHz | 4,71 V/µs | triângulo de ≈ 0,3 Vpp | senoide com amplitude cheia; 2,36 V / 580 ns = 4,1 V/µs | 46 |
-| 1 MHz | 9,42 V/µs | quase uma linha reta | senoide com amplitude cheia e pequeno atraso; 1,80 V / 210 ns = 8,6 V/µs | 47 |
-| 2 MHz | 18,8 V/µs | linha reta | lados começando a ficar retos e atraso visível; 2,34 V / 156 ns = **15,0 V/µs** | 48 |
+| 25 kHz | 0,24 V/µs | senoide sem distorção, em cima da entrada | sem distorção | 44 |
+| 50 kHz | 0,47 V/µs | lados retos (começa a triangular); cursores: 2,20 V / 6,4 µs = **0,344 V/µs** | igual à entrada | 45 |
+| 100 kHz | 0,94 V/µs | triângulo de ≈ 1,7 Vpp; cursores: 1,28 V / 3,7 µs = **0,346 V/µs** | igual à entrada | 46 |
+| 500 kHz | 4,71 V/µs | triângulo de ≈ 0,3 Vpp | senoide com amplitude cheia; 2,36 V / 580 ns = 4,1 V/µs | 47 |
+| 1 MHz | 9,42 V/µs | quase uma linha reta | senoide com amplitude cheia e pequeno atraso; 1,80 V / 210 ns = 8,6 V/µs | 48 |
+| 2 MHz | 18,8 V/µs | linha reta | lados começando a ficar retos e atraso visível; 2,34 V / 156 ns = **15,0 V/µs** | 49 |
 
-![Figura 43](imgs/protoboard/SEN/p2_sen_25kHz_visao_geral.jpeg)
+![Figura 44](imgs/protoboard/SEN/p2_sen_25kHz_visao_geral.jpeg)
 
-*Figura 43 – Senoide de 3 Vpp, 25 kHz (5 µs/div). Entrada (roxo), 741 (amarelo) e TL082 (ciano) um em cima do outro, sem distorção.*
+*Figura 44 – Senoide de 3 Vpp, 25 kHz (5 µs/div). Entrada (roxo), 741 (amarelo) e TL082 (ciano) um em cima do outro, sem distorção.*
 
-![Figura 44](imgs/protoboard/SEN/p2_sen_50kHz_ch1_741.jpeg)
+![Figura 45](imgs/protoboard/SEN/p2_sen_50kHz_ch1_741.jpeg)
 
-*Figura 44 – Senoide de 3 Vpp, 50 kHz (2,5 µs/div). O 741 começa a ficar triangular. Cursores no CH1: 2,20 V / 6,4 µs = 0,344 V/µs.*
+*Figura 45 – Senoide de 3 Vpp, 50 kHz (2,5 µs/div). O 741 começa a ficar triangular. Cursores no CH1: 2,20 V / 6,4 µs = 0,344 V/µs.*
 
-![Figura 45](imgs/protoboard/SEN/p2_sen_100kHz_ch1_741.jpeg)
+![Figura 46](imgs/protoboard/SEN/p2_sen_100kHz_ch1_741.jpeg)
 
-*Figura 45 – Senoide de 3 Vpp, 100 kHz. O 741 vira um triângulo de ≈ 1,7 Vpp. Cursores no CH1: 1,28 V / 3,7 µs = 0,346 V/µs. O TL082 continua igual à entrada.*
+*Figura 46 – Senoide de 3 Vpp, 100 kHz. O 741 vira um triângulo de ≈ 1,7 Vpp. Cursores no CH1: 1,28 V / 3,7 µs = 0,346 V/µs. O TL082 continua igual à entrada.*
 
-![Figura 46](imgs/protoboard/SEN/p2_sen_500kHz_ch2_tl082.jpeg)
+![Figura 47](imgs/protoboard/SEN/p2_sen_500kHz_ch2_tl082.jpeg)
 
-*Figura 46 – Senoide de 3 Vpp, 500 kHz (250 ns/div). O 741 cai para ≈ 0,3 Vpp e o TL082 segue a entrada (cursores no CH2: 2,36 V / 580 ns).*
+*Figura 47 – Senoide de 3 Vpp, 500 kHz (250 ns/div). O 741 cai para ≈ 0,3 Vpp e o TL082 segue a entrada (cursores no CH2: 2,36 V / 580 ns).*
 
-![Figura 47](imgs/protoboard/SEN/p2_sen_1MHz_ch2_tl082.jpeg)
+![Figura 48](imgs/protoboard/SEN/p2_sen_1MHz_ch2_tl082.jpeg)
 
-*Figura 47 – Senoide de 3 Vpp, 1 MHz (250 ns/div). O 741 fica praticamente parado e o TL082 mantém a amplitude, com um pequeno atraso (cursores no CH2: 1,80 V / 210 ns).*
+*Figura 48 – Senoide de 3 Vpp, 1 MHz (250 ns/div). O 741 fica praticamente parado e o TL082 mantém a amplitude, com um pequeno atraso (cursores no CH2: 1,80 V / 210 ns).*
 
-![Figura 48](imgs/protoboard/SEN/p2_sen_2MHz_ch2_tl082.jpeg)
+![Figura 49](imgs/protoboard/SEN/p2_sen_2MHz_ch2_tl082.jpeg)
 
-*Figura 48 – Senoide de 3 Vpp, 2 MHz (100 ns/div). Os lados da onda do TL082 ficam retos (cursores no CH2: 2,34 V / 156 ns ≈ 15 V/µs). Ele está começando a ser limitado pelo slew rate.*
+*Figura 49 – Senoide de 3 Vpp, 2 MHz (100 ns/div). Os lados da onda do TL082 ficam retos (cursores no CH2: 2,34 V / 156 ns ≈ 15 V/µs). Ele está começando a ser limitado pelo slew rate.*
 
 ## 2.5 Resultados
 
