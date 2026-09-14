@@ -397,9 +397,9 @@ O SR foi calculado como ΔV/Δt entre os dois cursores, colocados na parte reta 
 | 30 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 28 |
 | 30 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 29 |
 | **Média** | **CH1 – 741** | | | **0,342** | |
-| **Média** | **CH2 – TL082** | | | **0,409*** | |
+| **Média** | **CH2 – TL082** | | | **0,409**¹ | |
 
-\* No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
+¹ No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
 
 Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53 V no CH2 (duty de 50 %), confirmando o ganho 1 dos dois seguidores. Em 25 kHz o topo do 741 fica com uns 5 µs e em 30 kHz com uns 2 µs.
 
@@ -451,8 +451,8 @@ Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53
 
 | f | Canal | Δt (µs) | ΔV (V) | ΔV/Δt (V/µs) | Figura |
 |:---:|---|:---:|:---:|:---:|:---:|
-| 1 kHz | CH1 – 741 | 48,0 | 1,06 | 0,022** | 31 |
-| 1 kHz | CH2 – TL082 | 48,0 | 1,92 | 0,040** | 32 |
+| 1 kHz | CH1 – 741 | 48,0 | 1,06 | 0,022² | 31 |
+| 1 kHz | CH2 – TL082 | 48,0 | 1,92 | 0,040² | 32 |
 | 10 kHz | CH1 – 741 | 5,20 | 1,78 | 0,342 | 34 |
 | 10 kHz | CH2 – TL082 | 5,20 | 2,16 | 0,415 | 35 |
 | 25 kHz | CH1 – 741 | 4,96 | 1,58 | 0,319 | 37 |
@@ -462,10 +462,10 @@ Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53
 | 50 kHz | CH1 – 741 | 4,20 | 1,49 | 0,355 | 41 |
 | 50 kHz | CH2 – TL082 | 4,20 | 1,75 | 0,417 | 42 |
 | **Média (10 a 50 kHz)** | **CH1 – 741** | | | **0,339** | |
-| **Média (10 a 50 kHz)** | **CH2 – TL082** | | | **0,408*** | |
+| **Média (10 a 50 kHz)** | **CH2 – TL082** | | | **0,408**¹ | |
 
-\* No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
-\*\* Em 1 kHz as duas saídas ficaram iguais, com bordas arredondadas de uns 90 µs (Figuras 30 a 32). Quem limitou ali foi a borda do próprio sinal de entrada, e não os ampops: o 741 subiria 3 V em uns 9 µs. Por isso essas duas medidas ficaram fora da média.
+¹ No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
+² Em 1 kHz as duas saídas ficaram iguais, com bordas arredondadas de uns 90 µs (Figuras 30 a 32). Quem limitou ali foi a borda do próprio sinal de entrada, e não os ampops: o 741 subiria 3 V em uns 9 µs. Por isso essas duas medidas ficaram fora da média.
 
 Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V). Em 25 kHz mediu 3,30 Vpp no CH1 e 3,34 Vpp no CH2 (contando os picos das transições), com média do CH2 = 1,28 V. Em 50 kHz a saída do 741 já é quase triangular.
 
@@ -576,14 +576,14 @@ Nesse teste o CH3 (roxo) mostra a entrada. A amplitude de 3 Vpp foi lida na tela
 | Grandeza | Teórico | Obtido | Como foi obtido | Desvio |
 |----------|:-------:|:------:|---|:------:|
 | SR | 13 V/µs | **≈ 12,8 V/µs** | simulação, média de 10 bordas do pulso (10 a 90 %) | −2 % |
-| SR | 13 V/µs | **≈ 15 V/µs** | bancada, inclinação da senoide de 2 MHz¹ | ≈ +15 % |
+| SR | 13 V/µs | **≈ 15 V/µs** | bancada, inclinação da senoide de 2 MHz³ | ≈ +15 % |
 | Δt de subida (5 V) | 0,385 µs | ≈ 0,39 µs | simulação, 5 V ÷ SR simulado (de 10 a 90 %: 0,31 µs) | ≈ +1 % |
 | Δt de subida (3 V) | 0,231 µs | ≈ 0,24 µs | simulação, pulso de 3 V em 50 kHz | ≈ +4 % |
 | f_max onda quadrada de 5 V | 1,3 MHz | ≈ 1 MHz | simulação; em 1 MHz a saída já é triangular | ≈ −23 % |
 | FPBW senoide de 3 Vp | 689,7 kHz | entre 500 kHz e 1 MHz | simulação | dentro da faixa |
 | FPBW senoide de 1,5 Vp | 1,38 MHz | entre 1 e 2 MHz | bancada | dentro da faixa |
 
-¹ Inclinação dos lados da senoide (2,34 V em 156 ns) na frequência em que eles começam a ficar retos. Como a saída ainda chega na amplitude cheia, é uma estimativa por baixo do SR.
+³ Inclinação dos lados da senoide (2,34 V em 156 ns) na frequência em que eles começam a ficar retos. Como a saída ainda chega na amplitude cheia, é uma estimativa por baixo do SR.
 
 **SR do LM741 em cada teste:**
 
