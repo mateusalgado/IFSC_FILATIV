@@ -1,0 +1,11 @@
+Coloque aqui os prints do Proteus (osciloscópio) referenciados no .md:
+
+- u1_741_vp1.png
+- u1_741_vp3.png
+- u2_741_vp1.png
+- u3_741_vp1.png
+- comparativo_741_tl081.png
+- sr_pulso_741_1khz.png
+- sr_pulso_tl081_1khz.png
+- sr_pulso_freq_variavel.png
+- sr_senoide_3vp.png
