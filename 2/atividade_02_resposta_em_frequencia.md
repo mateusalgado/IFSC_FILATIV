@@ -60,7 +60,7 @@ O Proteus confirma a tendência prevista: maior ganho reduz a faixa de frequênc
 
 ## 3. Bancada com LM741: U1, ganho 2
 
-CH1 (amarelo) mede a entrada e CH2 (ciano), a saída. Em cada frequência foram registrados amplitude pico a pico, fase indicada pelo osciloscópio e forma de onda. O ganho foi calculado com as duas amplitudes da mesma tela: $G=V_{s,pp}/V_{e,pp}$. As 19 fotos originais foram extraídas dos PDFs recebidos e estão em `imgs/protoboard/2026-10-05/`, uma por página. Nas telas em que a saída deixa de ser senoidal, a razão de amplitudes não representa o ganho linear.
+Conectei CH1 (amarelo) à entrada e CH2 (ciano) à saída. Em cada frequência, registrei as amplitudes pico a pico, a fase indicada pelo osciloscópio e a forma de onda. Calculei o ganho com as duas amplitudes da mesma tela: $G=V_{s,pp}/V_{e,pp}$. Extraí as 19 fotos dos PDFs da prática e salvei uma por página em `imgs/protoboard/2026-10-05/`. Quando a saída deixa de ser senoidal, a razão de amplitudes não representa o ganho linear.
 
 | Frequência | Entrada $V_{pp}$ | Saída $V_{pp}$ | Ganho medido | Fase indicada | Saída |
 |---:|---:|---:|---:|---:|---|
