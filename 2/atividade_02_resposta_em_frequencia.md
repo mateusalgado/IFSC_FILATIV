@@ -65,111 +65,111 @@ Conectei CH1 (amarelo) à entrada e CH2 (ciano) à saída. Em cada frequência, 
 | Frequência | Entrada $V_{pp}$ | Saída $V_{pp}$ | Ganho medido | Fase indicada | Saída |
 |---:|---:|---:|---:|---:|---|
 | 100 Hz | 532 mV | 1,04 V | 1,95 | -0,18° | senoidal |
-| 499 Hz | 532 mV | 1,04 V | 1,95 | +0,99° | senoidal |
-| 1,00 kHz | 528 mV | 1,04 V | 1,97 | +1,44° | senoidal |
-| 9,98 kHz | 528 mV | 1,03 V | 1,95 | -2,71° | senoidal |
-| 50,25 kHz | 516 mV | 1,02 V | 1,98 | -7,20° | senoidal |
-| 99,95 kHz | 528 mV | 1,02 V | 1,93 | -16,2° | quase senoidal |
-| 200,6 kHz | 520 mV | 760 mV | 1,46 | -48,4°* | deformada |
-| 498,2 kHz | 516 mV | 328 mV | 0,64 | -90,9°* | triangular |
-| 995,4 kHz | 528 mV | 216 mV | 0,41 | -115°* | deformada, leitura instável |
+| 500 Hz | 532 mV | 1,04 V | 1,95 | +0,99° | senoidal |
+| 1 kHz | 528 mV | 1,04 V | 1,97 | +1,44° | senoidal |
+| 10 kHz | 532 mV | 1,03 V | 1,94 | -2,71° | senoidal |
+| 50 kHz | 516 mV | 1,02 V | 1,98 | -7,20° | senoidal |
+| 100 kHz | 528 mV | 1,02 V | 1,93 | -16,2° | quase senoidal |
+| 200 kHz | 520 mV | 760 mV | 1,46 | -48,4°* | deformada |
+| 500 kHz | 516 mV | 328 mV | 0,64 | -90,9°* | triangular |
+| 1 MHz | 528 mV | 216 mV | 0,41 | -115°* | deformada, leitura instável |
 
-Até 100 kHz, o ganho ficou entre 1,93 e 1,98 V/V, próximo dos 2 V/V previstos. A partir de 200 kHz a saída perde amplitude e deixa de ser senoidal. A tela de 500 kHz já mostra uma onda triangular. A foto adicional de 500,3 kHz repetiu praticamente o mesmo resultado: entrada de 520 mVpp e saída de 328 mVpp.
+Até 100 kHz, o ganho ficou entre 1,93 e 1,98 V/V, próximo dos 2 V/V previstos. A partir de 200 kHz a saída perde amplitude e deixa de ser senoidal. A tela de 500 kHz já mostra uma onda triangular. Uma segunda captura em 500 kHz, com outra base de tempo, repetiu o resultado: entrada de 520 mVpp e saída de 328 mVpp.
 
-As dez capturas recebidas para U1 estão incluídas abaixo. A imagem de 500,3 kHz é uma repetição adicional; as demais correspondem aos pontos da tabela.
+As dez capturas de U1 estão abaixo: nove pontos da tabela e a segunda captura de 500 kHz.
 
-![U1, 100 Hz](imgs/protoboard/2026-10-05/u1_p01.jpg){.foto-bancada}
+![U1, 100 Hz](imgs/protoboard/2026-10-05/u1_100Hz.jpeg){.foto-bancada}
 
 *U1, 100 Hz.*
 
-![U1, 499 Hz](imgs/protoboard/2026-10-05/u1_p02.jpg){.foto-bancada}
+![U1, 500 Hz](imgs/protoboard/2026-10-05/u1_500Hz.jpeg){.foto-bancada}
 
-*U1, 499 Hz.*
+*U1, 500 Hz.*
 
-![U1, 1 kHz](imgs/protoboard/2026-10-05/u1_p03.jpg){.foto-bancada}
+![U1, 1 kHz](imgs/protoboard/2026-10-05/u1_1kHz.jpeg){.foto-bancada}
 
-*U1, 1,00 kHz.*
+*U1, 1 kHz.*
 
-![U1, 9,98 kHz](imgs/protoboard/2026-10-05/u1_p04.jpg){.foto-bancada}
+![U1, 10 kHz](imgs/protoboard/2026-10-05/u1_10kHz.jpeg){.foto-bancada}
 
-*U1, 9,98 kHz.*
+*U1, 10 kHz.*
 
-![U1, 50,25 kHz](imgs/protoboard/2026-10-05/u1_p05.jpg){.foto-bancada}
+![U1, 50 kHz](imgs/protoboard/2026-10-05/u1_50kHz.jpeg){.foto-bancada}
 
-*U1, 50,25 kHz.*
+*U1, 50 kHz.*
 
-![U1, 99,95 kHz](imgs/protoboard/2026-10-05/u1_p06.jpg){.foto-bancada}
+![U1, 100 kHz](imgs/protoboard/2026-10-05/u1_100kHz.jpeg){.foto-bancada}
 
-*U1, 99,95 kHz.*
+*U1, 100 kHz.*
 
-![U1, 200,6 kHz](imgs/protoboard/2026-10-05/u1_p07.jpg){.foto-bancada}
+![U1, 200 kHz](imgs/protoboard/2026-10-05/u1_200kHz.jpeg){.foto-bancada}
 
-*U1, 200,6 kHz.*
+*U1, 200 kHz.*
 
-![U1, 498,2 kHz](imgs/protoboard/2026-10-05/u1_p08.jpg){.foto-bancada}
+![U1, 500 kHz](imgs/protoboard/2026-10-05/u1_500kHz.jpeg){.foto-bancada}
 
-*U1, 498,2 kHz.*
+*U1, 500 kHz.*
 
-![U1, 995,4 kHz](imgs/protoboard/2026-10-05/u1_p09.jpg){.foto-bancada}
+![U1, 1 MHz](imgs/protoboard/2026-10-05/u1_1MHz.jpeg){.foto-bancada}
 
-*U1, 995,4 kHz.*
+*U1, 1 MHz.*
 
-![U1, 500,3 kHz, repetição](imgs/protoboard/2026-10-05/u1_p10.jpg){.foto-bancada}
+![U1, 500 kHz, segunda captura](imgs/protoboard/2026-10-05/u1_500kHz_detalhe.jpeg){.foto-bancada}
 
-*U1, 500,3 kHz, repetição.*
+*U1, 500 kHz, segunda captura com outra base de tempo.*
 
 ## 4. Bancada com LM741: U2, ganho 11
 
 | Frequência | Entrada $V_{pp}$ | Saída $V_{pp}$ | Ganho medido | Fase indicada | Saída |
 |---:|---:|---:|---:|---:|---|
 | 100 Hz | 512 mV | 5,60 V | 10,94 | +0,72° | senoidal |
-| 1,00 kHz | 496 mV | 5,60 V | 11,29 | -2,52° | senoidal |
-| 10,00 kHz | 538 mV | 5,52 V | 10,26 | -14,4° | senoidal |
-| 20,02 kHz | 564 mV | 5,40 V | 9,57 | -25,1° | início de deformação |
-| 50,00 kHz | 620 mV | 3,20 V | 5,16 | -61,3°* | triangular |
-| 99,80 kHz | 496 mV | 1,64 V | 3,31 | -71,9°* | triangular |
-| 193,7 kHz | 496 mV | 840 mV | 1,69 | -86,5°* | triangular |
-| 500,5 kHz | 552 mV | 348 mV | 0,63 | -101°* | triangular |
+| 1 kHz | 496 mV | 5,60 V | 11,29 | -2,52° | senoidal |
+| 10 kHz | 530 mV | 5,52 V | 10,42 | -14,4° | senoidal |
+| 20 kHz | 564 mV | 5,40 V | 9,57 | -25,1° | início de deformação |
+| 50 kHz | 620 mV | 3,20 V | 5,16 | -61,3°* | triangular |
+| 100 kHz | 496 mV | 1,64 V | 3,31 | -71,9°* | triangular |
+| 200 kHz | 496 mV | 840 mV | 1,69 | -86,5°* | triangular |
+| 500 kHz | 592 mV | 348 mV | 0,59 | -101°* | triangular |
 
 Em 100 Hz e 1 kHz, a bancada entregou 10,94 e 11,29 V/V, respectivamente: ambos próximos do ganho esperado de 11. A forma de onda começa a mudar por volta de 20 kHz e está triangular em 50 kHz. A tela próxima de 1 MHz foi descartada da tabela: a entrada caiu para 73,6 mVpp e a saída, de 39,2 mVpp, ficou próxima do ruído.
 
-As nove capturas recebidas para U2 estão incluídas abaixo, inclusive a tela próxima de 1 MHz que foi descartada da tabela.
+As nove capturas de U2 estão abaixo, incluindo a de 1 MHz descartada da tabela.
 
-![U2, 100 Hz](imgs/protoboard/2026-10-05/u2_p01.jpg){.foto-bancada}
+![U2, 100 Hz](imgs/protoboard/2026-10-05/u2_100Hz.jpeg){.foto-bancada}
 
 *U2, 100 Hz.*
 
-![U2, 1 kHz](imgs/protoboard/2026-10-05/u2_p02.jpg){.foto-bancada}
+![U2, 1 kHz](imgs/protoboard/2026-10-05/u2_1kHz.jpeg){.foto-bancada}
 
-*U2, 1,00 kHz.*
+*U2, 1 kHz.*
 
-![U2, 10 kHz](imgs/protoboard/2026-10-05/u2_p03.jpg){.foto-bancada}
+![U2, 10 kHz](imgs/protoboard/2026-10-05/u2_10kHz.jpeg){.foto-bancada}
 
-*U2, 10,00 kHz.*
+*U2, 10 kHz.*
 
-![U2, 20,02 kHz](imgs/protoboard/2026-10-05/u2_p04.jpg){.foto-bancada}
+![U2, 20 kHz](imgs/protoboard/2026-10-05/u2_20kHz.jpeg){.foto-bancada}
 
-*U2, 20,02 kHz.*
+*U2, 20 kHz.*
 
-![U2, 50 kHz](imgs/protoboard/2026-10-05/u2_p05.jpg){.foto-bancada}
+![U2, 50 kHz](imgs/protoboard/2026-10-05/u2_50kHz.jpeg){.foto-bancada}
 
-*U2, 50,00 kHz.*
+*U2, 50 kHz.*
 
-![U2, 99,8 kHz](imgs/protoboard/2026-10-05/u2_p06.jpg){.foto-bancada}
+![U2, 100 kHz](imgs/protoboard/2026-10-05/u2_100kHz.jpeg){.foto-bancada}
 
-*U2, 99,8 kHz.*
+*U2, 100 kHz.*
 
-![U2, 193,7 kHz](imgs/protoboard/2026-10-05/u2_p07.jpg){.foto-bancada}
+![U2, 200 kHz](imgs/protoboard/2026-10-05/u2_200kHz.jpeg){.foto-bancada}
 
-*U2, 193,7 kHz.*
+*U2, 200 kHz.*
 
-![U2, 500,5 kHz](imgs/protoboard/2026-10-05/u2_p08.jpg){.foto-bancada}
+![U2, 500 kHz](imgs/protoboard/2026-10-05/u2_500kHz.jpeg){.foto-bancada}
 
-*U2, 500,5 kHz.*
+*U2, 500 kHz.*
 
-![U2, aproximadamente 1 MHz](imgs/protoboard/2026-10-05/u2_p09.jpg){.foto-bancada}
+![U2, 1 MHz](imgs/protoboard/2026-10-05/u2_1MHz.jpeg){.foto-bancada}
 
-*U2, aproximadamente 1 MHz. Tela descartada: a entrada caiu para 73,6 mVpp e a saída ficou próxima do ruído.*
+*U2, 1 MHz. Tela descartada: a entrada caiu para 73,6 mVpp e a saída ficou próxima do ruído.*
 
 As fases com asterisco são leituras automáticas sobre ondas deformadas. Mesmo nos pontos senoidais, a fase não foi conferida por cursores; por isso é registrada como indicação do instrumento, sem usá-la para calcular a frequência de corte.
 
@@ -179,16 +179,16 @@ A varredura AC do Proteus usa sinais pequenos e calcula a resposta linear do cir
 
 ![Comparação entre Proteus e bancada](imgs/geradas/comparativo_bancada_simulacao_u1_u2.png)
 
-*Figura 8 - Ganho em dB, obtido por $20\log_{10}G$. A concordância ocorre enquanto a saída é senoidal. Após a deformação, a amplitude medida cai antes do corte previsto pela simulação AC.*
+*Gráfico 5 - Ganho em dB, obtido por $20\log_{10}G$. A concordância ocorre enquanto a saída é senoidal. Após a deformação, a amplitude medida cai antes do corte previsto pela simulação AC.*
 
 | Circuito e frequência | Ganho na bancada | Ganho no Proteus | Leitura da tela |
 |---|---:|---:|---|
 | U1, 100 Hz | 1,95 | 2,00 | acordo em baixa frequência |
 | U1, 100 kHz | 1,93 | 1,98 | acordo próximo ao limite observado |
 | U1, 200 kHz | 1,46 | 1,91 | saída já deformada |
-| U1, 498 kHz | 0,64 | 1,58 | saída triangular |
+| U1, 500 kHz | 0,64 | 1,58 | saída triangular |
 | U2, 100 Hz | 10,94 | 11,00 | acordo em baixa frequência |
-| U2, 10 kHz | 10,26 | 10,94 | saída ainda senoidal |
+| U2, 10 kHz | 10,42 | 10,94 | saída ainda senoidal |
 | U2, 20 kHz | 9,57 | 10,75 | início da deformação |
 | U2, 50 kHz | 5,16 | 9,66 | saída triangular |
 | U2, 100 kHz | 3,31 | 7,45 | saída triangular |
@@ -197,17 +197,45 @@ O padrão é o mesmo nos dois circuitos: a simulação e a bancada concordam em 
 
 ### O que limita a bancada
 
-O LM741 da bancada apresentou slew rate de cerca de 0,34 V/µs na Atividade 01. U2 exige esse valor para produzir 5,40 Vpp senoidais a 20 kHz, justamente onde começa a deformar. U1 exige 0,32 V/µs a 100 kHz e deforma no ponto seguinte.
+O que interrompeu as duas varreduras foi o slew rate, não a banda de pequenos sinais. A inclinação máxima de uma senoide de saída é $\pi f V_{s,pp}$. Igualando ao SR de 0,34 V/µs medido no mesmo LM741 na Atividade 01, obtém-se a frequência a partir da qual a saída não acompanha mais a entrada:
 
-As rampas triangulares também indicam o limite: $2fV_{s,pp}$ vale 0,32 a 0,35 V/µs em U2 (50 a 500 kHz) e 0,327 V/µs em U1 (498 kHz). A queda de amplitude é compatível com slew rate, não com uma medição isolada da largura de banda linear.
+$$f_{SR}=\frac{SR}{\pi V_{s,pp}}$$
 
-A entrada variou de 516 a 532 mVpp em U1 e de 496 a 620 mVpp em U2. Para medir o corte AC, ela deve ser menor e constante. Com 50 mVpp, U2 produziria cerca de 0,55 Vpp e exigiria apenas 0,17 V/µs a 100 kHz.
+| Circuito | $V_{s,pp}$ em baixa frequência | $f_{SR}$ calculada | Primeira tela deformada |
+|:---:|---:|---:|---:|
+| U1 | 1,04 V | 104 kHz | 200 kHz |
+| U2 | 5,60 V | 19,3 kHz | 20 kHz |
+
+Acima de $f_{SR}$ a saída vira rampa, e a amplitude passa a ser $V_{s,pp}=SR/(2f)$, sem relação com o ganho do circuito. As telas triangulares confirmam, pois devolvem o próprio SR do componente:
+
+| Circuito | Frequência | $V_{s,pp}$ medido | $SR=2fV_{s,pp}$ |
+|:---:|---:|---:|---:|
+| U2 | 50 kHz | 3,20 V | 0,32 V/µs |
+| U2 | 100 kHz | 1,64 V | 0,33 V/µs |
+| U2 | 200 kHz | 840 mV | 0,34 V/µs |
+| U2 | 500 kHz | 348 mV | 0,35 V/µs |
+| U1 | 500 kHz | 328 mV | 0,33 V/µs |
+| U1 | 1 MHz | 216 mV | 0,43 V/µs |
+
+Cinco dos seis pontos ficam entre 0,32 e 0,35 V/µs. O ponto de 1 MHz em U1 tem leitura instável e já inclui ruído. Portanto, a queda de amplitude acima de 100 kHz (U1) e de 20 kHz (U2) mede a velocidade da saída, não a largura de banda.
+
+Para que a varredura chegue ao corte AC, a amplitude precisa satisfazer $f_{SR}>f_c$. Como $V_{s,pp}=G\,V_{e,pp}$ e $f_c=GBW/G$, o ganho se cancela:
+
+$$V_{e,pp}<\frac{SR}{\pi\,GBW}=\frac{0{,}34\ \text{V/µs}}{\pi\cdot 1\ \text{MHz}}\approx 108\ \text{mV}$$
+
+A entrada usada foi de cerca de 500 mVpp, cinco vezes acima desse limite, e ainda variou de 516 a 532 mVpp em U1 e de 496 a 620 mVpp em U2. Com 50 mVpp, U2 entregaria 0,55 Vpp e teria $f_{SR}$ = 197 kHz, contra corte previsto de 91,9 kHz; U1 entregaria 0,10 Vpp e $f_{SR}$ = 1,1 MHz, contra 631 kHz. Nas duas condições a saída permanece senoidal até depois do corte.
 
 ## 6. Conclusão
 
-Para os quatro circuitos, a teoria e a simulação mostram a troca de ganho por faixa de frequência com LM741 e TL081. Na bancada com LM741, U1 e U2 confirmaram os ganhos de baixa frequência de cerca de 2 e 11 V/V. Com aproximadamente 0,5 Vpp na entrada, U2 começa a deformar em 20 kHz e U1 entre 100 e 200 kHz. As rampas seguintes confirmam o limite de 0,34 V/µs.
+Teoria, simulação e bancada formam uma sequência coerente:
 
-A simulação AC prevê corte linear em 91,9 kHz (U2) e 631 kHz (U1). A bancada atingiu antes o limite de velocidade da saída. Para medir esses cortes, a varredura deve ser repetida com entrada menor, constante e saída senoidal.
+1. **Teoria.** O ganho em malha fechada consome o produto ganho-banda do componente: $f_c\approx GBW/G$. Com LM741, o corte previsto cai de 500 kHz em U1 para 105 Hz em U4; com TL081, as quatro faixas triplicam.
+2. **Simulação.** A varredura AC reproduz essa troca nos quatro circuitos e nos dois componentes, com 91,9 kHz em U2 e 631 kHz em U1 com LM741.
+3. **Bancada.** Os ganhos de baixa frequência foram confirmados: 1,95 V/V em U1 e 10,94 V/V em U2, contra 2 e 11 previstos. Acima disso, porém, a medida esbarrou em outra não idealidade antes de chegar ao corte.
+
+Com cerca de 0,5 Vpp na entrada, U2 começa a deformar em 20 kHz e U1 entre 100 e 200 kHz, exatamente nas frequências $f_{SR}$ calculadas com o slew rate de 0,34 V/µs. As rampas triangulares seguintes devolvem 0,32 a 0,35 V/µs, confirmando a origem do efeito. Os cortes de 91,9 kHz e 631 kHz previstos pela simulação, portanto, não foram medidos.
+
+Fica o critério para repetir a varredura: a entrada precisa ficar abaixo de $SR/(\pi\,GBW)\approx 108$ mVpp, qualquer que seja o ganho do circuito. Com 50 mVpp, as duas montagens permanecem senoidais além do corte e a comparação com a simulação AC passa a ser válida em toda a faixa.
 
 **Dados:** 19 imagens de `U1 (2).pdf` e `U2 (2).pdf` em `imgs/protoboard/2026-10-05/`; `LM741.DAT`, `TL081.DAT`, Atividade 01 e fichas da TI para [LM741](https://www.ti.com/product/LM741) e [TL081](https://www.ti.com/product/TL081).
 
