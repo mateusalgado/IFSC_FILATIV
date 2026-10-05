@@ -23,7 +23,11 @@ A previsão teórica da resposta em frequência usa o modelo de polo dominante:
 
 $$A(f)=\frac{A_0}{1+j(f/f_p)}$$
 
-em que $A_0$ é o ganho em baixas frequências e $f_p$ é a frequência do polo dominante. O modelo prevê uma queda de aproximadamente 20 dB por década acima de $f_p$ ([nota de aplicação da Texas Instruments](https://www.ti.com/lit/an/sboa114/sboa114.pdf)).
+em que $A_0$ é o ganho em malha aberta em baixas frequências e $f_p$ é a frequência do polo dominante. Com realimentação, $\beta=R_g/(R_g+R_f)=1/G$; portanto, o corte em malha fechada é aproximado por:
+
+$$f_c=f_p(1+A_0\beta)\approx \beta\,GBW=\frac{GBW}{G}$$
+
+Essa relação mostra por que o corte diminui quando o ganho aumenta ([nota de aplicação da Texas Instruments](https://www.ti.com/lit/an/sboa114/sboa114.pdf)).
 
 ![Bode teórico LM741](imgs/geradas/bode_teorico_lm741.png)
 
