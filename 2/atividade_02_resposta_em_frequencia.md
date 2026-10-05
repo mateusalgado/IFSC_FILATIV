@@ -19,9 +19,40 @@ Os quatro circuitos são amplificadores não inversores alimentados em ±15 V. A
 
 O ganho ideal é $1+R_f/R_g$. Em U2, a razão dos resistores é 10, mas **o ganho de tensão é 11**. O LM741 tem produto ganho-banda típico de 1 MHz e o TL081, de 3 MHz. Assim, ao aumentar o ganho de U1 para U4, a frequência de corte prevista diminui; para o mesmo circuito, o TL081 permite uma faixa maior. Em U4, o ganho de malha aberta finito reduz o ganho de baixa frequência para cerca de 9 525 V/V, valor usado na previsão de corte.
 
-**Procedimento de bancada.** CH1 (amarelo) mede a entrada e CH2 (ciano), a saída. Em cada frequência foram registrados amplitude pico a pico, fase indicada pelo osciloscópio e forma de onda. O ganho foi calculado com as duas amplitudes da mesma tela: $G=V_{s,pp}/V_{e,pp}$. As 19 fotos originais foram extraídas dos PDFs recebidos e estão em `imgs/protoboard/2026-10-05/`, uma por página. Nas telas em que a saída deixa de ser senoidal, a razão de amplitudes não representa o ganho linear.
+A previsão teórica da resposta em frequência usa o modelo de polo dominante do amplificador operacional.
 
-## 2. Resultado de U1: ganho 2
+![Bode teórico LM741](imgs/geradas/bode_teorico_lm741.png)
+
+*Gráfico 1 - Previsão teórica de ganho e fase dos quatro circuitos com LM741.*
+
+![Bode teórico TL081](imgs/geradas/bode_teorico_tl081.png)
+
+*Gráfico 2 - Previsão teórica com TL081. Os ganhos em baixa frequência permanecem; os cortes se deslocam para frequências maiores.*
+
+## 2. Simulação no Proteus
+
+Os quatro circuitos foram simulados de 1 Hz a 25 MHz com LM741 e, depois, com TL081. A varredura AC mostra ganho e fase de pequenos sinais. As frequências de corte foram obtidas no ponto em que o ganho cai 3 dB em relação ao valor de baixa frequência. Os dados exportados são `LM741.DAT` e `TL081.DAT`.
+
+| Circuito | Ganho simulado em baixa frequência | Corte com LM741 | Corte com TL081 |
+|:---:|---:|---:|---:|
+| U1 | 2,00 V/V | 631 kHz | 2,231 MHz |
+| U2 | 11,00 V/V | 91,9 kHz | 329,0 kHz |
+| U3 | 100,95 V/V | 9,62 kHz | 34,33 kHz |
+| U4 | cerca de 9 525 V/V | 104,7 Hz | 359,8 Hz |
+
+![Proteus LM741](imgs/simulacao/bode_sim_lm741.png)
+
+*Gráfico 3 - Proteus com LM741: ganho no eixo esquerdo e fase no direito para U1 a U4.*
+
+![Proteus TL081](imgs/simulacao/bode_sim_tl081.png)
+
+*Gráfico 4 - Proteus com TL081, nas mesmas condições e com os mesmos resistores.*
+
+O Proteus confirma a tendência prevista: maior ganho reduz a faixa de frequência, e o TL081 amplia essa faixa. Em U2, o corte com LM741 ficou em 91,9 kHz, próximo dos 90,9 kHz teóricos. Em U1, o modelo simulou 631 kHz, acima dos 500 kHz da aproximação teórica. A bancada permite verificar até onde esses resultados AC continuam válidos com a amplitude aplicada.
+
+## 3. Bancada com LM741: U1, ganho 2
+
+CH1 (amarelo) mede a entrada e CH2 (ciano), a saída. Em cada frequência foram registrados amplitude pico a pico, fase indicada pelo osciloscópio e forma de onda. O ganho foi calculado com as duas amplitudes da mesma tela: $G=V_{s,pp}/V_{e,pp}$. As 19 fotos originais foram extraídas dos PDFs recebidos e estão em `imgs/protoboard/2026-10-05/`, uma por página. Nas telas em que a saída deixa de ser senoidal, a razão de amplitudes não representa o ganho linear.
 
 | Frequência | Entrada $V_{pp}$ | Saída $V_{pp}$ | Ganho medido | Fase indicada | Saída |
 |---:|---:|---:|---:|---:|---|
@@ -37,19 +68,49 @@ O ganho ideal é $1+R_f/R_g$. Em U2, a razão dos resistores é 10, mas **o ganh
 
 Até 100 kHz, o ganho ficou entre 1,93 e 1,98 V/V, próximo dos 2 V/V previstos. A partir de 200 kHz a saída perde amplitude e deixa de ser senoidal. A tela de 500 kHz já mostra uma onda triangular. A foto adicional de 500,3 kHz repetiu praticamente o mesmo resultado: entrada de 520 mVpp e saída de 328 mVpp.
 
-![U1 100 Hz](imgs/protoboard/2026-10-05/u1_p01.jpg)
+As dez capturas recebidas para U1 estão incluídas abaixo. A imagem de 500,3 kHz é uma repetição adicional; as demais correspondem aos pontos da tabela.
 
-*Figura 2 - U1 em 100 Hz: 532 mVpp na entrada e 1,04 Vpp na saída; $G=1,95$.*
+![U1, 100 Hz](imgs/protoboard/2026-10-05/u1_p01.jpg){.foto-bancada}
 
-![U1 100 kHz](imgs/protoboard/2026-10-05/u1_p06.jpg)
+*U1, 100 Hz.*
 
-*Figura 3 - U1 em 100 kHz: saída ainda quase senoidal, com ganho 1,93.*
+![U1, 499 Hz](imgs/protoboard/2026-10-05/u1_p02.jpg){.foto-bancada}
 
-![U1 500 kHz](imgs/protoboard/2026-10-05/u1_p08.jpg)
+*U1, 499 Hz.*
 
-*Figura 4 - U1 em 498 kHz: saída triangular de 328 mVpp. Essa amplitude já não é ganho AC linear.*
+![U1, 1 kHz](imgs/protoboard/2026-10-05/u1_p03.jpg){.foto-bancada}
 
-## 3. Resultado de U2: ganho 11
+*U1, 1,00 kHz.*
+
+![U1, 9,98 kHz](imgs/protoboard/2026-10-05/u1_p04.jpg){.foto-bancada}
+
+*U1, 9,98 kHz.*
+
+![U1, 50,25 kHz](imgs/protoboard/2026-10-05/u1_p05.jpg){.foto-bancada}
+
+*U1, 50,25 kHz.*
+
+![U1, 99,95 kHz](imgs/protoboard/2026-10-05/u1_p06.jpg){.foto-bancada}
+
+*U1, 99,95 kHz.*
+
+![U1, 200,6 kHz](imgs/protoboard/2026-10-05/u1_p07.jpg){.foto-bancada}
+
+*U1, 200,6 kHz.*
+
+![U1, 498,2 kHz](imgs/protoboard/2026-10-05/u1_p08.jpg){.foto-bancada}
+
+*U1, 498,2 kHz.*
+
+![U1, 995,4 kHz](imgs/protoboard/2026-10-05/u1_p09.jpg){.foto-bancada}
+
+*U1, 995,4 kHz.*
+
+![U1, 500,3 kHz, repetição](imgs/protoboard/2026-10-05/u1_p10.jpg){.foto-bancada}
+
+*U1, 500,3 kHz, repetição.*
+
+## 4. Bancada com LM741: U2, ganho 11
 
 | Frequência | Entrada $V_{pp}$ | Saída $V_{pp}$ | Ganho medido | Fase indicada | Saída |
 |---:|---:|---:|---:|---:|---|
@@ -64,21 +125,47 @@ Até 100 kHz, o ganho ficou entre 1,93 e 1,98 V/V, próximo dos 2 V/V previstos.
 
 Em 100 Hz e 1 kHz, a bancada entregou 10,94 e 11,29 V/V, respectivamente: ambos próximos do ganho esperado de 11. A forma de onda começa a mudar por volta de 20 kHz e está triangular em 50 kHz. A tela próxima de 1 MHz foi descartada da tabela: a entrada caiu para 73,6 mVpp e a saída, de 39,2 mVpp, ficou próxima do ruído.
 
-![U2 100 Hz](imgs/protoboard/2026-10-05/u2_p01.jpg)
+As nove capturas recebidas para U2 estão incluídas abaixo, inclusive a tela próxima de 1 MHz que foi descartada da tabela.
 
-*Figura 5 - U2 em 100 Hz: $5,60/0,512=10,94$ V/V; saída senoidal.*
+![U2, 100 Hz](imgs/protoboard/2026-10-05/u2_p01.jpg){.foto-bancada}
 
-![U2 20 kHz](imgs/protoboard/2026-10-05/u2_p04.jpg)
+*U2, 100 Hz.*
 
-*Figura 6 - U2 em 20 kHz: a saída ainda alcança 5,40 Vpp, mas começa a deformar.*
+![U2, 1 kHz](imgs/protoboard/2026-10-05/u2_p02.jpg){.foto-bancada}
 
-![U2 50 kHz](imgs/protoboard/2026-10-05/u2_p05.jpg)
+*U2, 1,00 kHz.*
 
-*Figura 7 - U2 em 50 kHz: saída triangular de 3,20 Vpp; a razão 5,16 não representa o ganho linear.*
+![U2, 10 kHz](imgs/protoboard/2026-10-05/u2_p03.jpg){.foto-bancada}
+
+*U2, 10,00 kHz.*
+
+![U2, 20,02 kHz](imgs/protoboard/2026-10-05/u2_p04.jpg){.foto-bancada}
+
+*U2, 20,02 kHz.*
+
+![U2, 50 kHz](imgs/protoboard/2026-10-05/u2_p05.jpg){.foto-bancada}
+
+*U2, 50,00 kHz.*
+
+![U2, 99,8 kHz](imgs/protoboard/2026-10-05/u2_p06.jpg){.foto-bancada}
+
+*U2, 99,8 kHz.*
+
+![U2, 193,7 kHz](imgs/protoboard/2026-10-05/u2_p07.jpg){.foto-bancada}
+
+*U2, 193,7 kHz.*
+
+![U2, 500,5 kHz](imgs/protoboard/2026-10-05/u2_p08.jpg){.foto-bancada}
+
+*U2, 500,5 kHz.*
+
+![U2, aproximadamente 1 MHz](imgs/protoboard/2026-10-05/u2_p09.jpg){.foto-bancada}
+
+*U2, aproximadamente 1 MHz. Tela descartada: a entrada caiu para 73,6 mVpp e a saída ficou próxima do ruído.*
 
 As fases com asterisco são leituras automáticas sobre ondas deformadas. Mesmo nos pontos senoidais, a fase não foi conferida por cursores; por isso é registrada como indicação do instrumento, sem usá-la para calcular a frequência de corte.
 
-## 4. Bancada comparada à simulação
+## 5. Bancada comparada à simulação
 
 A varredura AC do Proteus usa sinais pequenos e calcula a resposta linear do circuito. O gráfico abaixo reúne os dados exportados de `LM741.DAT` e os ganhos calculados das fotos. Os pontos verdes correspondem a saídas senoidais; os vermelhos, a saídas deformadas.
 
@@ -108,21 +195,98 @@ As rampas triangulares também indicam o limite: $2fV_{s,pp}$ vale 0,32 a 0,35 V
 
 A entrada variou de 516 a 532 mVpp em U1 e de 496 a 620 mVpp em U2. Para medir o corte AC, ela deve ser menor e constante. Com 50 mVpp, U2 produziria cerca de 0,55 Vpp e exigiria apenas 0,17 V/µs a 100 kHz.
 
-### Simulação dos quatro circuitos com os dois amplificadores
-
-| Circuito | Ganho simulado em baixa frequência | Corte com LM741 | Corte com TL081 |
-|:---:|---:|---:|---:|
-| U1 | 2,00 V/V | 631 kHz | 2,231 MHz |
-| U2 | 11,00 V/V | 91,9 kHz | 329,0 kHz |
-| U3 | 100,95 V/V | 9,62 kHz | 34,33 kHz |
-| U4 | cerca de 9 525 V/V | 104,7 Hz | 359,8 Hz |
-
-O Proteus confirma a tendência prevista para os quatro circuitos: maior ganho reduz a faixa de frequência, e o TL081 amplia a faixa em relação ao LM741. Em U2, o corte simulado com LM741 (91,9 kHz) ficou próximo dos 90,9 kHz teóricos. Em U1, o modelo simulado cortou em 631 kHz, acima dos 500 kHz da aproximação teórica. As fotos de U1 e U2 acrescentam o limite por amplitude que a varredura AC não mostra.
-
-## 5. Conclusão
+## 6. Conclusão
 
 Para os quatro circuitos, a teoria e a simulação mostram a troca de ganho por faixa de frequência com LM741 e TL081. Na bancada com LM741, U1 e U2 confirmaram os ganhos de baixa frequência de cerca de 2 e 11 V/V. Com aproximadamente 0,5 Vpp na entrada, U2 começa a deformar em 20 kHz e U1 entre 100 e 200 kHz. As rampas seguintes confirmam o limite de 0,34 V/µs.
 
 A simulação AC prevê corte linear em 91,9 kHz (U2) e 631 kHz (U1). A bancada atingiu antes o limite de velocidade da saída. Para medir esses cortes, a varredura deve ser repetida com entrada menor, constante e saída senoidal.
 
 **Dados:** 19 imagens de `U1 (2).pdf` e `U2 (2).pdf` em `imgs/protoboard/2026-10-05/`; `LM741.DAT`, `TL081.DAT`, Atividade 01 e fichas da TI para [LM741](https://www.ti.com/product/LM741) e [TL081](https://www.ti.com/product/TL081).
+
+## Apêndice - primeira tentativa de bancada (01/10/2026)
+
+As capturas abaixo documentam a primeira montagem. A ponta de prova estava configurada incorretamente no osciloscópio, levando a uma entrada real de cerca de 1,34 Vpp e à saturação de U3 e U4. Os dados desta sessão não foram usados nas tabelas nem nas curvas de ganho.
+
+![U1, 96 Hz](imgs/protoboard/2026-10-01/u1_96Hz.jpeg){.foto-bancada}
+
+*U1, aproximadamente 96 Hz.*
+
+![U1, 951 Hz](imgs/protoboard/2026-10-01/u1_951Hz_100us.jpeg){.foto-bancada}
+
+*U1, aproximadamente 951 Hz.*
+
+![U1, 943 Hz](imgs/protoboard/2026-10-01/u1_943Hz.jpeg){.foto-bancada}
+
+*U1, aproximadamente 943 Hz, captura adicional.*
+
+![U1, 94,5 kHz](imgs/protoboard/2026-10-01/u1_94k5Hz.jpeg){.foto-bancada}
+
+*U1, aproximadamente 94,5 kHz.*
+
+![U1, 917 kHz](imgs/protoboard/2026-10-01/u1_917kHz.jpeg){.foto-bancada}
+
+*U1, aproximadamente 917 kHz.*
+
+![U2, 96 Hz](imgs/protoboard/2026-10-01/u2_96Hz.jpeg){.foto-bancada}
+
+*U2, aproximadamente 96 Hz.*
+
+![U2, 96 Hz, escala de 100 us](imgs/protoboard/2026-10-01/u2_96Hz_100us.jpeg){.foto-bancada}
+
+*U2, aproximadamente 96 Hz, outra escala de tempo.*
+
+![U2, 945 Hz](imgs/protoboard/2026-10-01/u2_945Hz.jpeg){.foto-bancada}
+
+*U2, aproximadamente 945 Hz.*
+
+![U2, 9,4 kHz](imgs/protoboard/2026-10-01/u2_9k4Hz.jpeg){.foto-bancada}
+
+*U2, aproximadamente 9,4 kHz.*
+
+![U2, 94,4 kHz](imgs/protoboard/2026-10-01/u2_94k4Hz.jpeg){.foto-bancada}
+
+*U2, aproximadamente 94,4 kHz.*
+
+![U2, 94,9 kHz](imgs/protoboard/2026-10-01/u2_94k9Hz_500ns.jpeg){.foto-bancada}
+
+*U2, aproximadamente 94,9 kHz, escala de 500 ns.*
+
+![U3, 95 Hz](imgs/protoboard/2026-10-01/u3_95Hz.jpeg){.foto-bancada}
+
+*U3, aproximadamente 95 Hz.*
+
+![U3, 953 Hz](imgs/protoboard/2026-10-01/u3_953Hz.jpeg){.foto-bancada}
+
+*U3, aproximadamente 953 Hz.*
+
+![U3, 951 Hz, captura adicional](imgs/protoboard/2026-10-01/u3_951Hz_b.jpeg){.foto-bancada}
+
+*U3, aproximadamente 951 Hz, captura adicional.*
+
+![U3, 94,3 kHz](imgs/protoboard/2026-10-01/u3_94k3Hz.jpeg){.foto-bancada}
+
+*U3, aproximadamente 94,3 kHz.*
+
+![U3, 898 kHz](imgs/protoboard/2026-10-01/u3_898kHz.jpeg){.foto-bancada}
+
+*U3, aproximadamente 898 kHz.*
+
+![U4, 96 Hz](imgs/protoboard/2026-10-01/u4_96Hz.jpeg){.foto-bancada}
+
+*U4, aproximadamente 96 Hz.*
+
+![U4, 954 Hz](imgs/protoboard/2026-10-01/u4_954Hz.jpeg){.foto-bancada}
+
+*U4, aproximadamente 954 Hz.*
+
+![U4, 9,3 kHz](imgs/protoboard/2026-10-01/u4_9k3Hz.jpeg){.foto-bancada}
+
+*U4, aproximadamente 9,3 kHz.*
+
+![U4, 94,3 kHz](imgs/protoboard/2026-10-01/u4_94k3Hz.jpeg){.foto-bancada}
+
+*U4, aproximadamente 94,3 kHz.*
+
+![U4, 917 kHz](imgs/protoboard/2026-10-01/u4_917kHz.jpeg){.foto-bancada}
+
+*U4, aproximadamente 917 kHz.*

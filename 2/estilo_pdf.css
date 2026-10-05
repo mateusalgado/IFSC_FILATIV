@@ -19,8 +19,10 @@ th, td { border: 1px solid #c9c9c9; padding: 3px 6px; }
 th { background: #eef1f4; font-weight: 600; }
 tr:nth-child(even) td { background: #fafafa; }
 img { max-width: 100%; display: block; margin: .8em auto .2em; }
+img.foto-bancada { max-height: 105mm; width: auto; }
 p > img + em, p em { }
 figure, p:has(img) { break-inside: avoid; }
+figure { break-after: avoid; }
 figcaption { display: none; }
 p:has(+ p > em):has(img) { break-after: avoid; }
 em { color: #333; }
