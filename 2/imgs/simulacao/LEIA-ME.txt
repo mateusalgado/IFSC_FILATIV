@@ -1,0 +1,15 @@
+Coloque aqui os prints do Proteus referenciados no .md.
+
+Resposta em frequencia (grafico FREQUENCY do Proteus, ganho em dB no eixo esquerdo e fase no direito):
+- bode_sim_lm741.png      -> os 4 circuitos com LM741 (U1 a U4)
+- bode_sim_tl081.png      -> os 4 circuitos com TL081/TL082
+
+Se ficar poluido com as 4 curvas juntas, pode separar por circuito:
+- bode_sim_lm741_u1.png ... bode_sim_lm741_u4.png
+- bode_sim_tl081_u1.png ... bode_sim_tl081_u4.png
+
+Dados exportados do grafico (opcional, mas ajuda muito):
+- bode_sim_lm741.txt
+- bode_sim_tl081.txt
+
+Dica: coloque os cursores no ponto de -3 dB (fc) e anote f e fase ali.

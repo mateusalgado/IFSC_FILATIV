@@ -394,17 +394,10 @@ O SR foi calculado como ΔV/Δt entre os dois cursores, colocados na parte reta 
 | f | Canal | Δt (µs) | ΔV (V) | ΔV/Δt (V/µs) | Figura |
 |:---:|---|:---:|:---:|:---:|:---:|
 | 1 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 21 |
-| 1 kHz | CH2 – TL082 | 6,30 | 2,62 | 0,416 | 22 |
 | 10 kHz | CH1 – 741 | 6,30 | 2,15 | 0,341 | 24 |
-| 10 kHz | CH2 – TL082 | 6,30 | 2,59 | 0,411 | 25 |
 | 25 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 27 |
-| 25 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 28 |
 | 30 kHz | CH1 – 741 | 7,40 | 2,53 | 0,342 | 29 |
-| 30 kHz | CH2 – TL082 | 7,40 | 3,00 | 0,405 | 30 |
 | **Média** | **CH1 – 741** | | | **0,342** | |
-| **Média** | **CH2 – TL082** | | | **0,409**¹ | |
-
-¹ No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
 
 Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53 V no CH2 (duty de 50 %), confirmando o ganho 1 dos dois seguidores. Em 25 kHz o topo do 741 fica com uns 5 µs e em 30 kHz com uns 2 µs.
 
@@ -416,10 +409,6 @@ Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53
 
 *Figura 21 – Pulso de 5 V, 1 kHz, subida (2,5 µs/div). Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
 
-![Figura 22](imgs/protoboard/5V/p2_5V_1kHz_ch2_tl082.jpeg)
-
-*Figura 22 – Pulso de 5 V, 1 kHz. Cursores no CH2 (TL082): 2,62 V / 6,3 µs = 0,416 V/µs.*
-
 ![Figura 23](imgs/protoboard/5V/p2_5V_10kHz_visao_geral.jpeg)
 
 *Figura 23 – Pulso de 5 V, 10 kHz, visão geral (10 µs/div).*
@@ -427,10 +416,6 @@ Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53
 ![Figura 24](imgs/protoboard/5V/p2_5V_10kHz_ch1_741.jpeg)
 
 *Figura 24 – Pulso de 5 V, 10 kHz. Cursores no CH1 (741): 2,15 V / 6,3 µs = 0,341 V/µs.*
-
-![Figura 25](imgs/protoboard/5V/p2_5V_10kHz_ch2_tl082.jpeg)
-
-*Figura 25 – Pulso de 5 V, 10 kHz. Cursores no CH2 (TL082): 2,59 V / 6,3 µs = 0,411 V/µs.*
 
 ![Figura 26](imgs/protoboard/5V/p2_5V_25kHz_visao_geral.jpeg)
 
@@ -440,36 +425,21 @@ Em 1 kHz o osciloscópio mediu 5,02 Vpp no CH1, 5,06 Vpp no CH2 e média de 2,53
 
 *Figura 27 – Pulso de 5 V, 25 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs.*
 
-![Figura 28](imgs/protoboard/5V/p2_5V_25kHz_ch2_tl082.jpeg)
-
-*Figura 28 – Pulso de 5 V, 25 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
-
 ![Figura 29](imgs/protoboard/5V/p2_5V_30kHz_ch1_741.jpeg)
 
 *Figura 29 – Pulso de 5 V, 30 kHz. Cursores no CH1 (741): 2,53 V / 7,4 µs = 0,342 V/µs. O topo do 741 dura só uns 2 µs.*
-
-![Figura 30](imgs/protoboard/5V/p2_5V_30kHz_ch2_tl082.jpeg)
-
-*Figura 30 – Pulso de 5 V, 30 kHz. Cursores no CH2 (TL082): 3,00 V / 7,4 µs = 0,405 V/µs.*
 
 ### Pulso de 0 a 3 V
 
 | f | Canal | Δt (µs) | ΔV (V) | ΔV/Δt (V/µs) | Figura |
 |:---:|---|:---:|:---:|:---:|:---:|
 | 1 kHz | CH1 – 741 | 48,0 | 1,06 | 0,022² | 32 |
-| 1 kHz | CH2 – TL082 | 48,0 | 1,92 | 0,040² | 33 |
 | 10 kHz | CH1 – 741 | 5,20 | 1,78 | 0,342 | 35 |
-| 10 kHz | CH2 – TL082 | 5,20 | 2,16 | 0,415 | 36 |
 | 25 kHz | CH1 – 741 | 4,96 | 1,58 | 0,319 | 38 |
-| 25 kHz | CH2 – TL082 | 4,56 | 1,80 | 0,395 | 39 |
 | 30 kHz | CH1 – 741 | 6,00 | 2,04 | 0,340 | 40 |
-| 30 kHz | CH2 – TL082 | 4,20 | 1,70 | 0,405 | 41 |
 | 50 kHz | CH1 – 741 | 4,20 | 1,49 | 0,355 | 42 |
-| 50 kHz | CH2 – TL082 | 4,20 | 1,75 | 0,417 | 43 |
 | **Média (10 a 50 kHz)** | **CH1 – 741** | | | **0,339** | |
-| **Média (10 a 50 kHz)** | **CH2 – TL082** | | | **0,408**¹ | |
-
-¹ No CH2 a inclinação medida não é o SR do TL082 (ver item 2.6).
+As leituras antigas do CH2 foram removidas porque não mediam o slew rate do TL082.
 ² Em 1 kHz as duas saídas ficaram iguais, com bordas arredondadas de uns 90 µs (Figuras 31 a 33). Quem limitou ali foi a borda do próprio sinal de entrada, e não os ampops: o 741 subiria 3 V em uns 9 µs. Por isso essas duas medidas ficaram fora da média.
 
 Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V). Em 25 kHz mediu 3,30 Vpp no CH1 e 3,34 Vpp no CH2 (contando os picos das transições), com média do CH2 = 1,28 V. Em 50 kHz a saída do 741 já é quase triangular.
@@ -482,10 +452,6 @@ Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V)
 
 *Figura 32 – Pulso de 3 V, 1 kHz (100 µs/div). Cursores no CH1 (741): 1,06 V / 48 µs. A transição é lenta nos dois canais.*
 
-![Figura 33](imgs/protoboard/3V/p2_3V_1kHz_ch2_tl082.jpeg)
-
-*Figura 33 – Pulso de 3 V, 1 kHz. Cursores no CH2 (TL082): 1,92 V / 48 µs.*
-
 ![Figura 34](imgs/protoboard/3V/p2_3V_10kHz_visao_geral.jpeg)
 
 *Figura 34 – Pulso de 3 V, 10 kHz, visão geral (25 µs/div).*
@@ -493,10 +459,6 @@ Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V)
 ![Figura 35](imgs/protoboard/3V/p2_3V_10kHz_ch1_741.jpeg)
 
 *Figura 35 – Pulso de 3 V, 10 kHz (2,5 µs/div). Cursores no CH1 (741): 1,78 V / 5,2 µs = 0,342 V/µs.*
-
-![Figura 36](imgs/protoboard/3V/p2_3V_10kHz_ch2_tl082.jpeg)
-
-*Figura 36 – Pulso de 3 V, 10 kHz. Cursores no CH2 (TL082): 2,16 V / 5,2 µs = 0,415 V/µs.*
 
 ![Figura 37](imgs/protoboard/3V/p2_3V_25kHz_visao_geral.jpeg)
 
@@ -506,25 +468,13 @@ Em 1 kHz o osciloscópio mediu 3,02 Vpp nos dois canais (média do CH2 = 1,41 V)
 
 *Figura 38 – Pulso de 3 V, 25 kHz (1 µs/div). Cursores no CH1 (741): 1,58 V / 4,96 µs = 0,319 V/µs.*
 
-![Figura 39](imgs/protoboard/3V/p2_3V_25kHz_ch2_tl082.jpeg)
-
-*Figura 39 – Pulso de 3 V, 25 kHz. Cursores no CH2 (TL082): 1,80 V / 4,56 µs = 0,395 V/µs.*
-
 ![Figura 40](imgs/protoboard/3V/p2_3V_30kHz_ch1_741.jpeg)
 
 *Figura 40 – Pulso de 3 V, 30 kHz (5 µs/div). Cursores no CH1 (741): 2,04 V / 6,0 µs = 0,340 V/µs.*
 
-![Figura 41](imgs/protoboard/3V/p2_3V_30kHz_ch2_tl082.jpeg)
-
-*Figura 41 – Pulso de 3 V, 30 kHz. Cursores no CH2 (TL082): 1,70 V / 4,2 µs = 0,405 V/µs.*
-
 ![Figura 42](imgs/protoboard/3V/p2_3V_50kHz_ch1_741.jpeg)
 
 *Figura 42 – Pulso de 3 V, 50 kHz (5 µs/div). Cursores no CH1 (741): 1,49 V / 4,2 µs = 0,355 V/µs. A onda já é quase triangular.*
-
-![Figura 43](imgs/protoboard/3V/p2_3V_50kHz_ch2_tl082.jpeg)
-
-*Figura 43 – Pulso de 3 V, 50 kHz. Cursores no CH2 (TL082): 1,75 V / 4,2 µs = 0,417 V/µs.*
 
 ### Senoide de 3 Vpp (0 a 3 V, 1,5 V de pico)
 
@@ -614,31 +564,18 @@ Com a senoide de 1,5 V de pico, o 741 distorceu entre 25 e 50 kHz, o que bate co
 
 **TL082 na simulação.** Com borda ideal na entrada, a média das 10 bordas deu 12,8 V/µs, praticamente o valor do datasheet. Em 1 MHz o semiperíodo (0,5 µs) é quase o tempo que o TL082 leva para subir 5 V, e a onda quadrada vira triângulo, perto dos 1,3 MHz calculados. Com a senoide de 3 V de pico, a saída acompanhou a entrada até 500 kHz (9,4 V/µs exigidos). Em 1 MHz, que exige 18,8 V/µs, ela ficou atrasada e menor. Então a FPBW simulada fica entre 500 kHz e 1 MHz, o que confere com os 689,7 kHz calculados.
 
-**TL082 na bancada.** Com a senoide de 1,5 V de pico, a saída continuou senoidal até 1 MHz, o que exige pelo menos 9,4 V/µs. Em 2 MHz os lados começam a ficar retos, com inclinação de ≈ 15 V/µs, perto dos 13 V/µs do datasheet e dos 12,8 V/µs da simulação. A FPBW medida fica entre 1 e 2 MHz (teórica de 1,38 MHz). O atraso de fase que aparece em 1 e 2 MHz vem do GBW de 3 MHz do TL082: nessas frequências o seguidor já está perto do limite de banda.
+**TL082 na bancada.** A comparação prática foi feita com a senoide de 1,5 V de pico. A saída continuou senoidal até 1 MHz, que exige 9,4 V/µs. Em 2 MHz os lados começaram a ficar retos, com inclinação medida de aproximadamente 15 V/µs. A FPBW prática ficou entre 1 e 2 MHz, próxima da previsão teórica de 1,38 MHz. O atraso de fase em 1 e 2 MHz também é coerente com o GBW de 3 MHz do TL082.
 
-No teste de pulso da bancada, a rampa do TL082 (CH2) ficou em ≈ 0,41 V/µs com 5 V e com 3 V, bem abaixo do que ele mostrou com a senoide e na simulação. Tudo indica que a borda do gerador já chegava como uma rampa de ≈ 0,4 V/µs. O TL082, que é rápido, só copiou essa borda. Já o 741, mais lento que ela, mostrou o seu próprio SR, e por isso o valor dele bateu com o da senoide.
+**Linha de raciocínio.** O datasheet prevê que o TL082 seja cerca de 26 vezes mais rápido que o LM741. A simulação confirma essa diferença: o TL082 mede 12,8 V/µs contra 0,34 V/µs do 741. Na bancada, a senoide confirma a mesma ordem de grandeza, com aproximadamente 15 V/µs no TL082 contra 0,34 V/µs no 741, ou cerca de 44 vezes. As diferenças entre os valores teóricos e práticos são esperadas porque o datasheet fornece valores típicos, a alimentação usada foi diferente e a medição da senoide é uma estimativa.
 
-Três detalhes apontam para isso:
-- a inclinação do CH2 foi a mesma com 3 V e com 5 V;
-- em 1 kHz/3 V as duas saídas ficaram lentas e iguais, mostrando que a borda da entrada não era ideal;
-- na simulação, com borda ideal, o TL082 deu 12,8 V/µs.
-
-Por isso o SR do TL082 na bancada foi tirado do teste com senoide, em que a entrada estava sendo vista no CH3. Esse ponto não afeta o 741, porque ele é mais lento que a borda do gerador.
-
-**Comparação entre os dois.** O TL082 ficou de 38 a 44 vezes mais rápido que o 741 (12,8 ou 15 V/µs contra 0,34 V/µs). O datasheet dá 26 vezes. A diferença maior vem principalmente do 741, que ficou abaixo do típico.
-
-**Teoria, simulação e bancada.** Os três concordam:
-- O SR do TL082 ficou em 12,8 V/µs na simulação e ≈ 15 V/µs na bancada, contra 13 V/µs do datasheet.
-- A FPBW caiu dentro da faixa calculada nos dois casos (3 Vp na simulação e 1,5 Vp na bancada).
-- O 741 ficou uns 32 % abaixo do típico, mas com um valor bem repetitivo, que explica todos os tempos e frequências medidos.
+Assim, teoria, simulação e bancada levam à mesma conclusão: o 741 começa a distorcer em dezenas de kHz, enquanto o TL082 acompanha sinais na faixa de centenas de kHz e MHz. A diferença não é explicada por saturação de tensão ou corrente, mas pelo slew rate e, nas frequências mais altas, também pelo GBW.
 
 ## Conclusão – Parte 2
 
-O slew rate foi a limitação que mais separou os dois CIs. Pelo datasheet, o TL082 (13 V/µs) é 26 vezes mais rápido que o LM741 (0,5 V/µs). Na prática a diferença ficou entre 38 e 44 vezes.
+O slew rate foi a limitação que mais separou os dois CIs. Pelo datasheet, o TL082 (13 V/µs) é 26 vezes mais rápido que o LM741 (0,5 V/µs). Na simulação, a razão foi de aproximadamente 38 vezes; na bancada, usando a senoide, foi de aproximadamente 44 vezes.
 
 - **LM741:** o SR foi 0,34 V/µs em todos os testes, com pulso ou senoide e com 5 V ou 3 V. A amplitude só mudou o tempo de subida (14,6 µs e 8,9 µs) e a frequência em que a onda quadrada vira triângulo (≈ 34 kHz e ≈ 57 kHz). Com a senoide de 3 Vpp, ele distorceu entre 25 e 50 kHz.
-- **TL082:** deu 12,8 V/µs na simulação e ≈ 15 V/µs na bancada. Com a senoide de 3 Vpp acompanhou até 1 MHz e só começou a distorcer em 2 MHz. Na simulação, com 3 V de pico, a FPBW ficou entre 500 kHz e 1 MHz, como previsto.
-- **Pulso na bancada:** a rampa do TL082 seguiu a borda do gerador, então o SR dele foi tirado do teste com senoide. Para ver o SR com pulso, a borda da entrada precisa ser mais rápida que o próprio ampop.
+- **TL082:** apresentou 12,8 V/µs na simulação e aproximadamente 15 V/µs na senoide da bancada. Com a senoide de 3 Vpp acompanhou até 1 MHz e começou a distorcer em 2 MHz, de acordo com a previsão baseada em SR e GBW.
 
 Diferente da Parte 1, essa limitação não depende da alimentação nem da carga: é uma característica interna do CI. Por isso, ganho, excursão de tensão e velocidade precisam ser verificados separadamente na hora de escolher um ampop.
 

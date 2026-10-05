@@ -1,0 +1,12 @@
+2026-10-01/  -> telas da primeira tentativa de bancada (21 fotos, U1 a U4).
+                Nomes: <circuito>_<frequencia>.jpeg
+                Essas medidas sairam com a ponta de prova lida como x1 em vez de x10,
+                o que deixou a entrada em ~1,34 Vpp e saturou U3 e U4. Ver item 7.3 do .md.
+
+Para a repeticao, salvar em 2026-<data>/ com os mesmos nomes:
+- bancada_montagem.jpeg   -> foto da protoboard
+- u2_<f>.jpeg             -> uma tela por frequencia de U2 (CH1 entrada, CH2 saida)
+- u3_<f>.jpeg             -> idem para U3
+
+Em cada tela: Vpp do CH1, Vpp do CH2 e o cursor de tempo entre as passagens
+por zero (para calcular a fase).

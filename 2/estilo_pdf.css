@@ -1,0 +1,29 @@
+@page { size: A4; margin: 18mm 16mm; }
+body {
+  font-family: "Segoe UI", Calibri, Arial, sans-serif;
+  font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; max-width: none; margin: 0;
+}
+h1 { font-size: 19pt; margin: 0 0 .4em; border-bottom: 2px solid #444; padding-bottom: .2em; }
+h2 { font-size: 14pt; margin: 1.6em 0 .5em; border-bottom: 1px solid #bbb; padding-bottom: .15em; break-after: avoid; }
+h3 { font-size: 11.5pt; margin: 1.2em 0 .4em; break-after: avoid; }
+h1, h2, h3 { break-inside: avoid; }
+p { margin: .5em 0; text-align: justify; }
+hr { border: none; border-top: 1px solid #ddd; margin: 1.4em 0; }
+blockquote {
+  margin: 1em 0; padding: .6em .9em; background: #fff8e1;
+  border-left: 4px solid #e6a700; break-inside: avoid;
+}
+blockquote p { margin: .2em 0; text-align: left; }
+table { border-collapse: collapse; width: 100%; margin: .8em 0; font-size: 9pt; break-inside: avoid; }
+th, td { border: 1px solid #c9c9c9; padding: 3px 6px; }
+th { background: #eef1f4; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+img { max-width: 100%; display: block; margin: .8em auto .2em; }
+p > img + em, p em { }
+figure, p:has(img) { break-inside: avoid; }
+p:has(+ p > em):has(img) { break-after: avoid; }
+em { color: #333; }
+code { background: #f2f2f2; padding: 0 3px; border-radius: 3px; font-size: 9pt; }
+math { font-size: 1.02em; }
+ul, ol { margin: .5em 0 .5em 1.2em; padding-left: .8em; }
+li { margin: .25em 0; }
