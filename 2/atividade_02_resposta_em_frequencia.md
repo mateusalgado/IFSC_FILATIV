@@ -19,7 +19,11 @@ Os quatro circuitos são amplificadores não inversores alimentados em ±15 V. A
 
 O ganho ideal é $1+R_f/R_g$. Em U2, a razão dos resistores é 10, mas **o ganho de tensão é 11**. O LM741 tem produto ganho-banda típico de 1 MHz e o TL081, de 3 MHz. Assim, ao aumentar o ganho de U1 para U4, a frequência de corte prevista diminui; para o mesmo circuito, o TL081 permite uma faixa maior. Em U4, o ganho de malha aberta finito reduz o ganho de baixa frequência para cerca de 9 525 V/V, valor usado na previsão de corte.
 
-A previsão teórica da resposta em frequência usa o modelo de polo dominante do amplificador operacional.
+A previsão teórica da resposta em frequência usa o modelo de polo dominante:
+
+$$A(f)=\frac{A_0}{1+j(f/f_p)}$$
+
+em que $A_0$ é o ganho em baixas frequências e $f_p$ é a frequência do polo dominante. O modelo prevê uma queda de aproximadamente 20 dB por década acima de $f_p$ ([nota de aplicação da Texas Instruments](https://www.ti.com/lit/an/sboa114/sboa114.pdf)).
 
 ![Bode teórico LM741](imgs/geradas/bode_teorico_lm741.png)
 
