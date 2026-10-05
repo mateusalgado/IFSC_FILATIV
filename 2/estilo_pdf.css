@@ -21,6 +21,7 @@ tr:nth-child(even) td { background: #fafafa; }
 img { max-width: 100%; display: block; margin: .8em auto .2em; }
 p > img + em, p em { }
 figure, p:has(img) { break-inside: avoid; }
+figcaption { display: none; }
 p:has(+ p > em):has(img) { break-after: avoid; }
 em { color: #333; }
 code { background: #f2f2f2; padding: 0 3px; border-radius: 3px; font-size: 9pt; }
