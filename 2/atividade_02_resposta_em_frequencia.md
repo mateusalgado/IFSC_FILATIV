@@ -272,4 +272,4 @@ Ou seja, a varredura AC descreve o circuito só enquanto o amplificador consegue
 
 ## Arquivos e referências
 
-19 telas de bancada em `imgs/protoboard/2026-10-05/`, extraídas de `U1 (2).pdf` e `U2 (2).pdf`. Varreduras do Proteus em `LM741.DAT` e `TL081.DAT`, projetos em `atividade_02_resposta_em_frequencia.pdsprj` e `atividade_02_resposta_em_frequencia_tl081.pdsprj`. Gráficos teóricos gerados por `gerar_graficos.ps1` e comparativo por `gerar_comparativo_bancada.py`. Slew rate de 0,34 V/µs medido na Atividade 01. Fichas técnicas: [LM741](https://www.ti.com/product/LM741) e [TL081](https://www.ti.com/product/TL081).
+Telas de bancada em `imgs/protoboard/2026-10-05/`. Varreduras do Proteus em `LM741.DAT` e `TL081.DAT`, projetos em `atividade_02_resposta_em_frequencia.pdsprj` e `atividade_02_resposta_em_frequencia_tl081.pdsprj`. Gráficos teóricos gerados por `gerar_graficos.ps1` e comparativo por `gerar_comparativo_bancada.py`. Slew rate de 0,34 V/µs medido na Atividade 01. Fichas técnicas: [LM741](https://www.ti.com/product/LM741) e [TL081](https://www.ti.com/product/TL081).
