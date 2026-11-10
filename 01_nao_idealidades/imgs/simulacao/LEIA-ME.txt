@@ -1,0 +1,11 @@
+Prints do osciloscopio do Proteus citados no relatorio.
+
+Parte 1 (impedancia de saida e saturacao, LM741):
+- saturacao_vp1v.png               -> U1, U2 e U3 com Vp = 1 V
+- saturacao_vp3v.png               -> U1, U2 e U3 com Vp = 3 V
+- saturacao_vp1v_cursor_pico.png   -> Vp = 1 V, cursores no pico
+- saturacao_vp1v_cursor_ombro.png  -> Vp = 1 V, cursor no "ombro" de U2
+
+Parte 2 (slew rate, TL082 e 741):
+- sr_pulso_tl082_741_<frequencia>.png  -> entrada em pulso
+- sr_senoide_3vp_<frequencia>.png      -> entrada senoidal de 3 V de pico

@@ -1,0 +1,11 @@
+Fotos e telas de osciloscopio da Parte 2 (slew rate) em bancada.
+CH1 = 741, CH2 = TL082.
+
+parte2_bancada.jpeg   -> foto da montagem
+pulso_5v/             -> entrada em pulso de 5 V
+pulso_3v/             -> entrada em pulso de 3 V
+senoide/              -> entrada senoidal
+pulso_5v_refeito/     -> segunda rodada do pulso de 5 V, nao citada no relatorio
+
+Nomes: p2_<entrada>_<frequencia>_<canal ou visao_geral>.jpeg
+As subpastas _descartadas/ guardam telas repetidas ou com cursor mal posicionado.

@@ -1,0 +1,7 @@
+Prints do grafico FREQUENCY do Proteus citados no relatorio
+(ganho em dB no eixo esquerdo, fase no direito):
+
+- bode_sim_lm741.png  -> os 4 circuitos com LM741 (U1 a U4)
+- bode_sim_tl081.png  -> os 4 circuitos com TL081
+
+Os dados exportados desses graficos estao em dados/LM741.DAT e dados/TL081.DAT.

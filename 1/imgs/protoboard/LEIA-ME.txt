@@ -1,4 +1,0 @@
-Coloque aqui as fotos/prints da montagem em bancada referenciadas no .md:
-
-- parte1_bancada.png
-- parte2_bancada.png

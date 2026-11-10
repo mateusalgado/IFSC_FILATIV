@@ -1,0 +1,7 @@
+# Proteus: backups automaticos e estado da janela
+*.pdsbak
+*.workspace
+
+# Temporarios
+tmp/
+_build.html

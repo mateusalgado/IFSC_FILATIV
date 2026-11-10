@@ -1,0 +1,8 @@
+Telas de osciloscopio do filtro de quinta ordem em bancada.
+CH1 = entrada, CH2 = saida.
+
+Nomes: f5_<frequencia>.jpeg
+- f5_100Hz.jpeg, f5_200Hz.jpeg, f5_500Hz.jpeg, f5_800Hz.jpeg
+- f5_1kHz.jpeg, f5_1k2Hz.jpeg, f5_1k5Hz.jpeg, f5_2kHz.jpeg, f5_3kHz.jpeg
+- f5_corte.jpeg        -> frequencia em que a saida cai para 0,707 do valor de 100 Hz
+- f5_montagem.jpeg     -> foto da protoboard
