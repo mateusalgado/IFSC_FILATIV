@@ -6,3 +6,6 @@ Nomes: f5_<frequencia>.jpeg
 - f5_1kHz.jpeg, f5_1k2Hz.jpeg, f5_1k5Hz.jpeg, f5_2kHz.jpeg, f5_3kHz.jpeg
 - f5_corte.jpeg        -> frequencia em que a saida cai para 0,707 do valor de 100 Hz
 - f5_montagem.jpeg     -> foto da protoboard
+
+esquematico_bancada.svg / .png -> esquematico de montagem com os pinos do TL082,
+                                  usado no guia_bancada.md (desenhado a mao, nao sai de script)

@@ -208,17 +208,17 @@ function Par($chave, $cor, $nome) {
 if ($sim.ContainsKey('item1')) {
     Bode-Svg 'bode_sim_x_teoria_itens_1_2.svg' 'Passa-alta: Proteus (cont&#237;nuo) &#215; te&#243;rico (tracejado)' @(
         (Par 'rc_pa' $CZ 'RC') + (Par 'item1' $AZ 'ganho 3') + (Par 'item2' $VM 'ganho 30')
-    ) @{ gMin = -60; gMax = 40; gPasso = 20; pMin = -180; pMax = 90; pPasso = 45; legX = 380; legY = 235 }
+    ) @{ gMin = -60; gMax = 40; gPasso = 20; pMin = -180; pMax = 90; pPasso = 45; legX = 380; legY = 222 }
 }
 if ($sim.ContainsKey('item3_tl082')) {
     Bode-Svg 'bode_sim_x_teoria_item_3.svg' 'Passa-baixa: Proteus (cont&#237;nuo) &#215; te&#243;rico (tracejado)' @(
         (Par 'rc_pb' $CZ 'RC') + (Par 'item3_tl082' $AZ 'TL082') + (Par 'item3_lm324' $VM 'LM324')
-    ) @{ gMin = -120; gMax = 40; gPasso = 20; pMin = -360; pMax = 0; pPasso = 45; legX = 100; legY = 235 }
+    ) @{ gMin = -120; gMax = 40; gPasso = 20; pMin = -360; pMax = 0; pPasso = 45; legX = 100; legY = 222 }
 }
 if ($sim.ContainsKey('e3')) {
     Bode-Svg 'bode_sim_x_teoria_item_4.svg' '5&#170; ordem: Proteus (cont&#237;nuo) &#215; te&#243;rico (tracejado)' @(
         (Par 'e1' $VD 'est&#225;gio 1') + (Par 'e2' $RX 'est&#225;gio 2') + (Par 'e3' $VM 'sa&#237;da')
-    ) @{ gMin = -160; gMax = 40; gPasso = 40; pMin = -720; pMax = 0; pPasso = 90; legX = 100; legY = 235 }
+    ) @{ gMin = -160; gMax = 40; gPasso = 40; pMin = -720; pMax = 0; pPasso = 90; legX = 100; legY = 222 }
 }
 
 # ---------- tabelas para o .md ----------

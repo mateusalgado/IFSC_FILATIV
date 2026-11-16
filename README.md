@@ -1,6 +1,6 @@
-# Eletrônica III - IFSC
+# Filtros Ativos - IFSC
 
-Trabalhos da unidade curricular Eletrônica III (Engenharia Eletrônica, IFSC), Prof. Luis Carlos Martinhago Schlichting.
+Trabalhos da unidade curricular Filtros Ativos (Engenharia Eletrônica, IFSC), Prof. Luis Carlos Martinhago Schlichting.
 
 | Pasta | Trabalho | Relatório |
 |---|---|---|

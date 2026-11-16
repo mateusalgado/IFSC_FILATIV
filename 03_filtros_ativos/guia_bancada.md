@@ -27,6 +27,12 @@ Se puder, meça os cinco capacitores de 10 nF e os cinco resistores de 16 kΩ an
 
 Em cada CI, um capacitor de 100 nF do pino 8 ao terra e outro do pino 4 ao terra, o mais perto possível do chip.
 
+## Esquemático
+
+![Esquemático de bancada do filtro de quinta ordem](imgs/protoboard/esquematico_bancada.svg)
+
+Os números em vermelho são os pinos do TL082. Os nomes dos componentes (R7, C1, ...) são os mesmos do projeto `proteus/item_4_quinta_ordem.pdsprj`. Há uma cópia em PNG, para abrir no celular ou imprimir: `imgs/protoboard/esquematico_bancada.png`.
+
 ## Ligações
 
 **Estágio 1 (U1, amplificador A): primeira ordem, ganho 3**

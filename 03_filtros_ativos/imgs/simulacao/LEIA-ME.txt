@@ -1,14 +1,17 @@
-Imagens exportadas do Proteus (File > Export Graphics > Export Bitmap, 200 DPI).
+Imagens exportadas do Proteus (File > Export Graphics > Export Bitmap).
 
-Folha inteira (esquematico + grafico FREQUENCY):
-- proteus_itens_1_2.png
-- proteus_item_3.png
-- proteus_item_4.png
+Grafico FREQUENCY de cada projeto (escopo Current Graph, 300 DPI), usado no relatorio:
+- bode_proteus_itens_1_2.png
+- bode_proteus_item_3.png
+- bode_proteus_item_4.png
 
-Recorte so do esquematico, usado no relatorio:
+Recorte do esquematico, usado no relatorio:
 - circuito_itens_1_2.png   -> passa-alta, ganhos 3 e 30
 - circuito_item_3.png      -> passa-baixa com TL082 e LM324
 - circuito_item_4.png      -> quinta ordem, tres estagios
 
-Os graficos do relatorio nao sao prints: saem dos dados exportados (.DAT, na pasta dados/)
+Folha inteira (escopo Current Sheet, 200 DPI), origem dos recortes; o grafico sai cortado:
+- proteus_itens_1_2.png, proteus_item_3.png, proteus_item_4.png
+
+Os graficos simulacao x teoria nao sao prints: saem dos dados exportados (.DAT, na pasta dados/)
 pelo script scripts/gerar_graficos.ps1 e ficam em imgs/geradas/.
